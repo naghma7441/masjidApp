@@ -1,0 +1,484 @@
+import React, {useState} from 'react';
+import {
+  ImageBackground,
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Dimensions,
+  FlatList,
+} from 'react-native';
+import CustomHeader from '../../component/CustomHeader';
+import CONSTANT from '../../constants';
+import {Button, Icon, Overlay} from 'react-native-elements';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import CustomInput from '../../component/InputFileds';
+import {CheckBox} from 'react-native-elements';
+import CustomButton from '../../component/CustomButton';
+import {ListComp} from '../../component/List';
+import {useDispatch} from 'react-redux';
+import {createAction} from '../Login/action';
+import AsyncStorage from '@react-native-community/async-storage';
+import {NavigationApp} from '../../navigation/navigation';
+import {AuthContext} from '../../context';
+import {BgImage} from '../../component/ImageContainer';
+import {BackgroundImage} from 'react-native-elements/dist/config';
+import Carousel from 'react-native-looped-carousel';
+import Feather from 'react-native-vector-icons/dist/Feather';
+import AntDesign from 'react-native-vector-icons/dist/AntDesign';
+import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
+import Entypo from 'react-native-vector-icons/dist/Entypo';
+import {EventListComp} from '../../component/List/EventList';
+import MoreScreen from '../More';
+import ToggleSwitch from 'toggle-switch-react-native';
+import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
+
+const SettingScreen = ({navigation}) => {
+  const [toggle1, setToggle1] = useState(false);
+  const [toggle2, setToggle2] = useState(false);
+  const [toggle3, setToggle3] = useState(false);
+  const [toggle4, setToggle4] = useState(false);
+  const Data = [
+    {
+      id: 1,
+      name: 'New Muslim',
+      Icon_Name: 'mic',
+      bgColor: '#20BBD4',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+    {
+      id: 2,
+      name: 'Ask Imam',
+      Icon_Name: 'mic',
+      bgColor: '#DFBB2B',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+    {
+      id: 3,
+      name: 'Weekend School',
+      Icon_Name: 'mic',
+      bgColor: '#A758EB',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+    {
+      id: 4,
+      name: 'Marriage Services',
+      Icon_Name: 'mic',
+      bgColor: '#DF6C2B',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+    {
+      id: 5,
+      name: 'Ramsan Services',
+      Icon_Name: 'mic',
+      bgColor: '#5E5E5E',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+    {
+      id: 6,
+      name: 'Cunsultation',
+      Icon_Name: 'mic',
+      bgColor: '#A7C829',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+    {
+      id: 7,
+      name: 'Funeral Services',
+      Icon_Name: 'mic',
+      bgColor: '#A7C5',
+      type: 'feather',
+      Screen: CONSTANT.App.screenNames.servicesDetail,
+    },
+  ];
+
+  const toggle1Button = () => {
+    if (toggle1 == false) {
+      setToggle1(true);
+    } else if (toggle1 == true) {
+      setToggle1(false);
+    }
+  };
+  const toggle2Button = () => {
+    if (toggle2 == false) {
+      setToggle2(true);
+    } else if (toggle2 == true) {
+      setToggle2(false);
+    }
+  };
+  const toggle3Button = () => {
+    if (toggle3 == false) {
+      setToggle3(true);
+    } else if (toggle3 == true) {
+      setToggle3(false);
+    }
+  };
+  const toggle4Button = () => {
+    if (toggle4 == false) {
+      setToggle4(true);
+    } else if (toggle4 == true) {
+      setToggle4(false);
+    }
+  };
+  return (
+    <BackgroundImage
+      source={CONSTANT.App.screenImages.bg_Image}
+      style={{flex: 1}}>
+      <View style={{display: 'flex', flexDirection: 'row', marginTop: 40}}>
+        <TouchableOpacity
+          style={styles.box}
+          onPress={() => navigation.goBack()}>
+          <Entypo name="chevron-left" size={25} color="#ffffff" />
+        </TouchableOpacity>
+        <Text style={styles.title}>Settings</Text>
+      </View>
+      {/* <ToggleSwitch
+        isOn={toggle}
+        onColor="#a7c829"
+        offColor="#9D9D9D"
+        labelStyle={{color: 'black', fontWeight: '900'}}
+        size="medium"
+        onToggle={toggleButton}
+      /> */}
+      <ScrollView
+        vertical={true}
+        contentContainerStyle={{height: 700}}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <View style={styles.row}>
+            <AntDesign name="idcard" style={styles.icon} />
+            <Text style={styles.heading}>Account</Text>
+          </View>
+          <View style={styles.row1}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(CONSTANT.App.screenNames.ProfileScreen)
+              }>
+              <Text style={styles.heading1}>Profile</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(CONSTANT.App.screenNames.ProfileScreen)
+              }>
+              <Entypo
+                name="chevron-right"
+                size={25}
+                color="#ffffff"
+                style={styles.icon1}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row2}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(CONSTANT.App.screenNames.ChangePassword)
+              }>
+              <Text style={styles.heading2}>Change password</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(CONSTANT.App.screenNames.ChangePassword)
+              }>
+              <Entypo
+                name="chevron-right"
+                size={25}
+                color="#ffffff"
+                style={styles.icon2}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.container1}>
+          <View style={styles.row}>
+            <Feather name="bell" style={styles.icon} />
+            <Text style={styles.heading}>Notifcations</Text>
+          </View>
+          <View style={styles.row1}>
+            <TouchableOpacity>
+              <Text style={styles.heading1}>In app notification</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <ToggleSwitch
+                isOn={toggle1}
+                onColor="#a7c829"
+                offColor="#9D9D9D"
+                labelStyle={{color: 'black', fontWeight: '900'}}
+                size="mediums"
+                onToggle={toggle1Button}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row2}>
+            <TouchableOpacity>
+              <Text style={styles.heading5}>Verse of day</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <ToggleSwitch
+                isOn={toggle2}
+                onColor="#a7c829"
+                offColor="#9D9D9D"
+                labelStyle={{color: 'black', fontWeight: '900'}}
+                size="medium"
+                onToggle={toggle2Button}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row3}>
+            <TouchableOpacity>
+              <Text style={styles.heading6}>Miscellaneous</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <ToggleSwitch
+                isOn={toggle3}
+                onColor="#a7c829"
+                offColor="#9D9D9D"
+                labelStyle={{color: 'black', fontWeight: '900'}}
+                size="medium"
+                onToggle={toggle3Button}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.container3}>
+          <View style={styles.row}>
+            <FontAwesome name="credit-card" style={styles.icon} />
+            <Text style={styles.heading}>Card and Payement</Text>
+          </View>
+          <View style={styles.row1}>
+            <TouchableOpacity>
+              <Text style={styles.heading6}>Auto payement</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <ToggleSwitch
+                isOn={toggle4}
+                onColor="#a7c829"
+                offColor="#9D9D9D"
+                labelStyle={{color: 'black', fontWeight: '900'}}
+                size="medium"
+                onToggle={toggle4Button}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row2}>
+            <TouchableOpacity>
+              <Text style={styles.heading7}>Payment method</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.container4}>
+          <View style={styles.row}>
+            <Entypo name="dots-three-horizontal" style={styles.icon} />
+            <Text style={styles.heading}>Others</Text>
+          </View>
+          <View style={styles.row1}>
+            <TouchableOpacity>
+              <Text style={styles.heading1}>Help</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Entypo
+                name="chevron-right"
+                size={25}
+                color="#ffffff"
+                style={styles.icon1}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row2}>
+            <TouchableOpacity  onPress={()=>navigation.navigate(CONSTANT.App.screenNames.ContactUs)}>
+              <Text style={styles.heading8}>Contact us</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Entypo
+                name="chevron-right"
+                size={25}
+                color="#ffffff"
+                style={styles.icon2}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.roww2}>
+            <TouchableOpacity>
+              <Text style={styles.heading9}>Send feedback</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Entypo
+                name="chevron-right"
+                size={25}
+                color="#ffffff"
+                style={styles.icon2}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </BackgroundImage>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flex: 1,
+  },
+  container1: {
+    width: '100%',
+    flex: 1,
+    top: -25,
+  },
+  container3: {
+    width: '100%',
+    flex: 1,
+    top: -20,
+  },
+  container4: {
+    width: '100%',
+    flex: 1,
+    top: -53,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: '500',
+    top: 3,
+    left: 110,
+    right: 279,
+    bottom: 748,
+  },
+  heading: {
+    fontSize: 18,
+    color: '#a7c829',
+    fontWeight: '400',
+    lineHeight: 20,
+    left: 10,
+  },
+  heading1: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '400',
+    lineHeight: 20,
+    marginRight: 80,
+  },
+  heading2: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '400',
+    lineHeight: 20,
+    // marginRight: 10,
+  },
+  heading8: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '400',
+    lineHeight: 20,
+    marginRight: 50,
+  },
+  heading9: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '400',
+    lineHeight: 20,
+    marginRight: 20,
+    // top: 5,
+  },
+  heading5: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '400',
+    lineHeight: 20,
+    marginRight: 130,
+  },
+  heading6: {
+    fontSize: 17,
+    color: '#fff',
+    fontWeight: '300',
+    lineHeight: 20,
+    marginRight: 110,
+  },
+  heading7: {
+    fontSize: 18,
+    color: '#fff',
+    fontWeight: '400',
+    lineHeight: 20,
+    marginRight: 193,
+  },
+  icon: {
+    fontSize: 20,
+    color: '#a7c829',
+  },
+  icon1: {
+    color: '#fff',
+    marginLeft: 130,
+  },
+  icon2: {
+    color: '#fff',
+    marginLeft: 115,
+  },
+  row: {
+    display: 'flex',
+    flexDirection: 'row',
+    left: 35,
+    top: 35,
+  },
+  row1: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    // width: '100%',
+    // left: 20,
+    top: 65,
+  },
+  row2: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    // width: '100%',
+    // left: 20,
+    top: 80,
+  },
+  roww2: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    // width: '100%',
+    // left: 20,
+    top: 100,
+  },
+  row3: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    // width: '100%',
+    // left: 20,
+    top: 95,
+  },
+  banner: {
+    width: '100%',
+    height: 310,
+  },
+  box: {
+    width: 40,
+    height: 40,
+    borderRadius: 5,
+    backgroundColor: '#515151',
+    alignItems: 'center',
+    justifyContent: 'center',
+    left: 20,
+  },
+});
+
+export default SettingScreen;
