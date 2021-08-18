@@ -165,7 +165,7 @@ function AppStackNavigator() {
   return (
     <Stack.Navigator
       headerMode="none"
-      initialRouteName={CONSTANT.App.screenNames.splash}>
+      initialRouteName={CONSTANT.App.screenNames.home}>
       <Stack.Screen name={CONSTANT.App.screenNames.home} component={MyTabs} />
       <Stack.Screen
         name={CONSTANT.App.screenNames.profile}
