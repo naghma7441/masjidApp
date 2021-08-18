@@ -67,7 +67,7 @@ const DataList = [
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: '#515151',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     marginTop: 15,
     borderRadius: 10,
     height: 115,

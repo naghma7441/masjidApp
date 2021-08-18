@@ -185,8 +185,8 @@ const EditProfileScreen = ({navigation}) => {
               <CustomInput value="Aasif Sheikh" style={{top: -55}} />
               {/* </KeyboardAvoidingView> */}
 
-              <CustomInput value="Nagpur" style={{top: -40}} />
-              <CustomInput value="01/01/0000" style={{top: -25}} />
+              <CustomInput value="Aasif@gmail.com" style={{top: -40}} />
+              <CustomInput value="8888888888" style={{top: -25}} />
 
               <CustomButton
                 variant={'filled'}

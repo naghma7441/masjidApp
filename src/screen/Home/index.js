@@ -27,6 +27,7 @@ import Feather from 'react-native-vector-icons/dist/Feather';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import Share from 'react-native-share';
+import Qibla from '../QiblaDirection/Qibla';
 
 import Tts from 'react-native-tts';
 import {
@@ -72,6 +73,7 @@ const Data = [
     Icon_Name: 'help-circle',
     bgColor: '#A758EB',
     type: 'feather',
+    screenNAme: CONSTANT.App.tabMenu.homeTAb,
   },
   {
     id: 5,
@@ -210,154 +212,77 @@ const HomeScreen = ({navigation}) => {
               />
             </View>
           </View>
-          <View
-            style={{
-              width: '100%',
-              height: 140,
-              borderRadius: 15,
-              padding: 10,
-              marginTop: 25,
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
-            }}>
+          <View style={[styles.showAll, {paddingHorizontal: 10}]}>
+            <Text style={styles.text}>Verse of the day</Text>
+          </View>
+          <View style={styles.verseCard}>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 16,
+                // width: '100%',
+                fontWeight: '300',
+                lineHeight: 20,
+                fontStyle: 'normal',
+                top: 10,
+              }}>
+              “And indeed, I fear the successors after me, and my wife has been
+              barren, so give me from Yourself an heir. Who will inherit me and
+              inherit from the family of Jacob. And make him, my Lord, pleasing
+              [to You].”
+            </Text>
+            <Text
+              style={{
+                color: '#9D9D9D',
+                top: 20,
+                fontSize: 17,
+                fontWeight: '500',
+                lineHeight: 17,
+              }}>
+              Surah Maryam
+            </Text>
             <View
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                marginRight: 93,
-                top: 8,
+                justifyContent: 'space-between',
+                top: 30,
               }}>
-              <Image
-                source={CONSTANT.App.screenImages.speakar}
-                style={{width: 22, height: 22, bottom: 5}}
-              />
-
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: '500',
-                  lineHeight: 19,
-                  color: '#A7C829',
-                  // bottom: 3,
-                  left: 4,
-                  width: '100%',
-                }}>
-                Announcement
-              </Text>
-            </View>
-            <View style={{overflow: 'hidden'}}>
-              <View>
-                <Text
-                  style={{
-                    top: 75,
-                    textAlign: 'right',
-                    color: '#A8C829',
-                    fontWeight: '700',
-                    fontSize: 18,
-                    height: 17,
-                    right: 10,
-                  }}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate(CONSTANT.App.screenNames.Announce)
-                    }>
-                    <Text
-                      style={{
-                        color: '#A8C829',
-                        fontWeight: '600',
-                        fontSize: 16,
-                        // bottom: 10,
-                        height: 17,
-                      }}>
-                      See All
-                    </Text>
-                  </TouchableOpacity>
-                </Text>
+              <View style={{display: 'flex', flexDirection: 'row'}}>
+                <TouchableOpacity onPress={play ? onStop : onPlay}>
+                  {/* <Image
+                  source={CONSTANT.App.staticImages.listen}
+                  style={{marginTop: 4, width: 22, height: 19}}
+                /> */}
+                  {play ? (
+                    <Ionicons
+                      name="volume-high-outline"
+                      style={{fontSize: 25, color: '#a7c829'}}
+                    />
+                  ) : (
+                    <Ionicons
+                      name="volume-mute-outline"
+                      style={{fontSize: 25, color: '#a7c829'}}
+                    />
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity onPress={play ? onStop : onPlay}>
+                  <Text
+                    style={{
+                      color: '#a7c829',
+                      left: 5,
+                      width: 70,
+                      fontSize: 17,
+                    }}>
+                    Listen
+                  </Text>
+                </TouchableOpacity>
               </View>
-              <Carousel
-                //   delay={2000}
-                style={[layoutStyle, {overflow: 'hidden'}]}
-                autoplay={false}
-                //   pageInfo
-                pagingEnabled
-                bullets={true}
-                chosenBulletStyle={{
-                  backgroundColor: '#fff',
-                  color: 'white',
-                  fontSize: 20,
-                  width: 14,
-                  height: 14,
-                }}
-                contentContainerStyle={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                bulletStyle={{
-                  backgroundColor: '#b3afaf',
-                  borderWidth: 0,
-                  color: 'white',
-                  height: 14,
-
-                  width: 14,
-                }}
-                bulletsContainerStyle={{
-                  marginRight: 160,
-                  marginBottom: 95,
-                  borderWidth: 1,
-                  borderStyle: 'solid',
-                  borderColor: 'rgba(157, 157, 157, 0.2)',
-                  backgroundColor: 'rgba(157, 157, 157, 0.2)',
-                  width: '25%',
-                  height: '10%',
-                  marginLeft: '4%',
-                  borderRadius: 20,
-                }}>
-                {announceData.map(item => (
-                  <View
-                    style={[
-                      layoutStyle,
-                      {
-                        flex: 1,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        overflow: 'hidden',
-                      },
-                    ]}>
-                    <View>
-                      <TouchableOpacity
-                        onPress={() =>
-                          navigation.navigate(
-                            CONSTANT.App.screenNames.AnnounceDetail,
-                          )
-                        }>
-                        <View>
-                          <Text
-                            style={{
-                              fontSize: 16,
-                              lineHeight: 17,
-                              color: '#fff',
-                              fontWeight: 'normal',
-                              fontStyle: 'normal',
-                              bottom: 1,
-                              // width: '100%',
-                              // flexWrap: 'wrap',
-                              // height: 51,
-                              display: 'flex',
-                              textAlign: 'left',
-                              alignItems: 'center',
-
-                              // right: 5,
-                              // right: %',
-                              // zIndex: -1,
-                            }}>
-                            {item.desc}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                ))}
-              </Carousel>
+              <View>
+                <TouchableOpacity style={styles.box1} onPress={myCustomShare}>
+                  <AntDesign name="sharealt" size={22} color="#a7c829" />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
 
@@ -517,86 +442,164 @@ const HomeScreen = ({navigation}) => {
 
     </ScrollView> */}
           </View>
-          <View style={[styles.showAll, {paddingHorizontal: 10}]}>
-            <Text style={styles.text}>Verse of the day</Text>
-          </View>
-          <View style={styles.verseCard}>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: 16,
-                // width: '100%',
-                fontWeight: '300',
-                lineHeight: 20,
-                fontStyle: 'normal',
-                top: 10,
-              }}>
-              “And indeed, I fear the successors after me, and my wife has been
-              barren, so give me from Yourself an heir. Who will inherit me and
-              inherit from the family of Jacob. And make him, my Lord, pleasing
-              [to You].”
-            </Text>
-            <Text
-              style={{
-                color: '#9D9D9D',
-                top: 20,
-                fontSize: 17,
-                fontWeight: '500',
-                lineHeight: 17,
-              }}>
-              Surah Maryam
-            </Text>
+          <View
+            style={{
+              width: '100%',
+              height: 140,
+              borderRadius: 15,
+              padding: 10,
+              marginTop: 25,
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            }}>
             <View
               style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-between',
-                top: 30,
+                marginRight: 93,
+                top: 8,
               }}>
-              <View style={{display: 'flex', flexDirection: 'row'}}>
-                <TouchableOpacity onPress={play ? onStop : onPlay}>
-                  {/* <Image
-                  source={CONSTANT.App.staticImages.listen}
-                  style={{marginTop: 4, width: 22, height: 19}}
-                /> */}
-                  {play ? (
-                    <Ionicons
-                      name="volume-mute-outline"
-                      style={{fontSize: 25, color: '#a7c829'}}
-                    />
-                  ) : (
-                    <Ionicons
-                      name="volume-high-outline"
-                      style={{fontSize: 25, color: '#a7c829'}}
-                    />
-                  )}
-                </TouchableOpacity>
-                <TouchableOpacity onPress={play ? onStop : onPlay}>
-                  <Text
-                    style={{
-                      color: '#a7c829',
-                      left: 5,
-                      width: 70,
-                      fontSize: 17,
-                    }}>
-                    Listen
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              <Image
+                source={CONSTANT.App.screenImages.speakar}
+                style={{width: 22, height: 22, bottom: 5}}
+              />
+
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: '500',
+                  lineHeight: 19,
+                  color: '#A7C829',
+                  // bottom: 3,
+                  left: 4,
+                  width: '100%',
+                }}>
+                Announcement
+              </Text>
+            </View>
+            <View style={{overflow: 'hidden'}}>
               <View>
-                <TouchableOpacity style={styles.box1} onPress={myCustomShare}>
-                  <AntDesign name="sharealt" size={22} color="#a7c829" />
-                </TouchableOpacity>
+                <Text
+                  style={{
+                    top: 75,
+                    textAlign: 'right',
+                    color: '#A8C829',
+                    fontWeight: '700',
+                    fontSize: 18,
+                    height: 17,
+                    right: 10,
+                  }}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate(CONSTANT.App.screenNames.Announce)
+                    }>
+                    <Text
+                      style={{
+                        color: '#A8C829',
+                        fontWeight: '600',
+                        fontSize: 16,
+                        // bottom: 10,
+                        height: 17,
+                      }}>
+                      See All
+                    </Text>
+                  </TouchableOpacity>
+                </Text>
               </View>
+              <Carousel
+                //   delay={2000}
+                style={[layoutStyle, {overflow: 'hidden'}]}
+                autoplay={false}
+                //   pageInfo
+                pagingEnabled
+                bullets={true}
+                chosenBulletStyle={{
+                  backgroundColor: '#fff',
+                  color: 'white',
+                  fontSize: 20,
+                  width: 14,
+                  height: 14,
+                }}
+                contentContainerStyle={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                bulletStyle={{
+                  backgroundColor: '#b3afaf',
+                  borderWidth: 0,
+                  color: 'white',
+                  height: 14,
+
+                  width: 14,
+                }}
+                bulletsContainerStyle={{
+                  marginRight: 160,
+                  marginBottom: 95,
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  borderColor: 'rgba(157, 157, 157, 0.2)',
+                  backgroundColor: 'rgba(157, 157, 157, 0.2)',
+                  width: '25%',
+                  height: '10%',
+                  marginLeft: '4%',
+                  borderRadius: 20,
+                }}>
+                {announceData.map(item => (
+                  <View
+                    style={[
+                      layoutStyle,
+                      {
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        overflow: 'hidden',
+                      },
+                    ]}>
+                    <View>
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate(
+                            CONSTANT.App.screenNames.AnnounceDetail,
+                          )
+                        }>
+                        <View>
+                          <Text
+                            style={{
+                              fontSize: 16,
+                              lineHeight: 17,
+                              color: '#fff',
+                              fontWeight: 'normal',
+                              fontStyle: 'normal',
+                              bottom: 1,
+                              // width: '100%',
+                              // flexWrap: 'wrap',
+                              // height: 51,
+                              display: 'flex',
+                              textAlign: 'left',
+                              alignItems: 'center',
+
+                              // right: 5,
+                              // right: %',
+                              // zIndex: -1,
+                            }}>
+                            {item.desc}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ))}
+              </Carousel>
             </View>
           </View>
+
           <View style={[styles.showAll, {paddingHorizontal: 10}]}>
             <Text style={styles.text}>Today's - Salah Time</Text>
 
             <Text style={{color: '#A7C829', fontSize: 18}}>See all</Text>
           </View>
           <View style={{marginTop: 10}}>
-            <Text
+            {/* <Text
               style={{
                 color: '#9D9D9D',
                 alignItems: 'stretch',
@@ -607,7 +610,7 @@ const HomeScreen = ({navigation}) => {
                 fontWeight: '500',
               }}>
               India Standard Time (IST) is 5:30 hours
-            </Text>
+            </Text> */}
           </View>
           <View style={styles.calender}>
             <View style={styles.rowData}>
@@ -704,13 +707,13 @@ const HomeScreen = ({navigation}) => {
                 lineHeight: 17,
                 marginLeft: 10,
               }}>
-              India Standard Time (IST) is 5:30 hours
+              Lorem Ipsum is simply dummy text of the printing
             </Text>
           </View>
 
-          <View style={styles.ribbon}>
-            <CustomInput plcholder={'Enter Amount'} leftIcon={'dollar-sign'} />
-            <View>
+          {/* <View style={styles.ribbon}> */}
+          {/* <CustomInput plcholder={'Enter Amount'} leftIcon={'dollar-sign'} /> */}
+          {/* <View>
               <View
                 style={{
                   width: '100%',
@@ -764,9 +767,9 @@ const HomeScreen = ({navigation}) => {
                   />
                 </View>
               </Overlay>
-            </View>
+            </View> */}
 
-            <View style={styles.rowData}>
+          {/* <View style={styles.rowData}>
               <CheckBox
                 title="One time"
                 textStyle={{color: '#FFFFFF', fontWeight: '300', fontSize: 15}}
@@ -793,10 +796,14 @@ const HomeScreen = ({navigation}) => {
                   borderWidth: 0,
                 }}
               />
-            </View>
-            <CustomButton variant={'filled'} title={'Donate now'} />
+            </View> */}
+          <CustomButton
+            variant={'filled'}
+            title={'Donate now'}
+            style={{marginTop: 20}}
+          />
 
-            <View>
+          {/* <View>
               <Text
                 style={{
                   color: '#9D9D9D',
@@ -813,8 +820,8 @@ const HomeScreen = ({navigation}) => {
                 source={CONSTANT.App.screenImages.paypal}
                 style={{width: '100%', height: '100%'}}
               />
-            </View>
-          </View>
+            </View> */}
+          {/* </View> */}
 
           <View
             style={[
@@ -860,59 +867,85 @@ const HomeScreen = ({navigation}) => {
               Live Stream
             </Text>
           </View>
-          <TouchableOpacity onPress={()=>navigation.navigate(CONSTANT.App.screenNames.liveStream)}
-          style={{width:'100%',height:250,backgroundColor: '#1a1d2e',marginTop:20,borderRadius:15,marginTop:30}}>
-            <View style={{width:'100%',height:190}}>
-            <Image source={require('../../assets/images/video.png')} style={{width:'100%'}} resizeMode="stretch"  />
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(CONSTANT.App.screenNames.liveStream)
+            }
+            style={{
+              width: '100%',
+              height: 250,
+              backgroundColor: '#1a1d2e',
+              marginTop: 20,
+              borderRadius: 15,
+              marginTop: 30,
+            }}>
+            <View style={{width: '100%', height: 190}}>
+              <Image
+                source={require('../../assets/images/video.png')}
+                style={{width: '100%'}}
+                resizeMode="stretch"
+              />
 
-<View style={{position:'absolute',top:'40%',left:'41%'}}>
-  <Image source={require('../../assets/images/playBtn.png')} />
-</View>
+              <View style={{position: 'absolute', top: '40%', left: '41%'}}>
+                <Image source={require('../../assets/images/playBtn.png')} />
+              </View>
             </View>
 
-            <View style={{marginLeft:10}}>
-              <Text style={{marginLeft: 5, color: '#FFFFFF',fontSize:17}}>Speech | Ikhlaak E Hasna</Text>
-              <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+            <View style={{marginLeft: 10}}>
+              <Text style={{marginLeft: 5, color: '#FFFFFF', fontSize: 17}}>
+                Speech | Ikhlaak E Hasna
+              </Text>
               <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                        marginTop: 10,
-                      }}>
-                      <Icon name="clock" type="evilicon" color="#9D9D9D" />
-                      <Text style={{marginLeft: 5, color: '#9D9D9D'}}>
-                        standard 10 min ago 
-                      </Text>
-                      <Text style={{color: '#9D9D9D', marginLeft: 5}}>|</Text>
-                      <Text style={{color: '#9D9D9D', marginLeft: 5,color:'rgba(221, 75, 57, 1)'}}>
-                        Live
-                      </Text>
-                    </View>
-                    <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate(CONSTANT.App.screenNames.liveStream)
-                    }>
-                    <Text
-                      style={{
-                        color: '#A8C829',
-                        fontWeight: '600',
-                        fontSize: 16,
-                        // bottom: 10,
-                        height: 17,
-                        marginRight:10
-                      }}>
-                        Watch Now
-                    </Text>
-                  </TouchableOpacity>
-
-
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    marginTop: 10,
+                  }}>
+                  <Icon name="clock" type="evilicon" color="#9D9D9D" />
+                  <Text style={{marginLeft: 5, color: '#9D9D9D'}}>
+                    standard 10 min ago
+                  </Text>
+                  <Text style={{color: '#9D9D9D', marginLeft: 5}}>|</Text>
+                  <Text
+                    style={{
+                      color: '#9D9D9D',
+                      marginLeft: 5,
+                      color: 'rgba(221, 75, 57, 1)',
+                    }}>
+                    Live
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate(CONSTANT.App.screenNames.liveStream)
+                  }>
+                  <Text
+                    style={{
+                      color: '#A8C829',
+                      fontWeight: '600',
+                      fontSize: 16,
+                      // bottom: 10,
+                      height: 17,
+                      marginRight: 10,
+                    }}>
+                    Watch Now
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
-
-            </View>
-
-
-</TouchableOpacity>
-
+          </TouchableOpacity>
+          {/* <View style={[styles.showAll, {paddingHorizontal: 10}]}>
+            <Text style={styles.text}>Qibla direction</Text>
+          </View>
+          <View style={styles.qibla}>
+            <Qibla />
+          </View> */}
         </View>
       </ScrollView>
     </BackgroundImage>
@@ -975,6 +1008,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     padding: 20,
+    borderRadius: 10,
+  },
+  qibla: {
+    width: '100%',
+    height: 360,
+    marginTop: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    padding: 20,
+    // paddingTop: 20,
     borderRadius: 10,
   },
   calanderText: {

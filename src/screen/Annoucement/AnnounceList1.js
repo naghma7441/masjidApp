@@ -73,23 +73,21 @@ const DataList = [
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: 'rgba(98,98,98,.3)',
+    backgroundColor: '#515151',
     marginTop: 28,
     borderRadius: 10,
-    paddingBottom: 30,
-    paddingTop: 5,
-    // height: 145,
+    height: 135,
     flexDirection: 'row',
   },
-  // announceBox: {
-  //   height: 125,
-  //   borderRadius: 10,
-  //   width: 337,
-  //   backgroundColor: '#515151',
-  //   marginTop: 15,
-  //   left: 13,
-  //   // position: 'absolute',
-  // },
+  announceBox: {
+    height: 125,
+    borderRadius: 10,
+    width: 337,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    marginTop: 15,
+    left: 13,
+    // position: 'absolute',
+  },
   title: {
     color: '#a7c829',
     fontSize: 20,
@@ -181,7 +179,6 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
                       bottom: 1,
                       width: 323,
                       height: 51,
-
                       top: 18,
                       left: 14,
                     }}>
