@@ -26,6 +26,7 @@ import {BgImage} from '../../component/ImageContainer';
 import {BackgroundImage} from 'react-native-elements/dist/config';
 import Carousel from 'react-native-looped-carousel';
 import Feather from 'react-native-vector-icons/dist/Feather';
+import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import {EventListComp} from '../../component/List/EventList';
@@ -51,7 +52,7 @@ const MoreScreen = ({navigation}) => {
     },
     {
       id: 3,
-      name: 'Pledge',
+      name: 'Donate',
       Icon_Name: 'dollar-sign',
       bgColor: '#DFBB2B',
       type: 'feather',
@@ -69,11 +70,11 @@ const MoreScreen = ({navigation}) => {
     },
     {
       id: 5,
-      name: 'Account',
-      Icon_Name: 'user',
+      name: 'Hadiths',
+      Icon_Name: 'star',
       bgColor: '#DF6C2B',
       type: 'feather',
-      screenName: CONSTANT.App.screenNames.MoreScreen,
+      screenName: CONSTANT.App.screenNames.HadeesScreen,
     },
     {
       id: 6,
@@ -82,6 +83,42 @@ const MoreScreen = ({navigation}) => {
       bgColor: '#A7C829',
       type: 'feather',
       screenName: CONSTANT.App.screenNames.SettingScreen,
+    },
+  ];
+  const Data3 = [
+    {
+      id: 7,
+      name: 'Quran',
+      Icon_Name: 'book-open',
+      bgColor: '#A75647',
+      type: 'feather',
+      screenName: CONSTANT.App.screenNames.QuranScreen,
+    },
+    {
+      id: 8,
+      name: 'Qibla direction',
+      Icon_Name: 'compass',
+      bgColor: '#B75790',
+      type: 'entypo',
+      screenName: CONSTANT.App.screenNames.QiblaScreen,
+    },
+    {
+      id: 9,
+      name: 'Quran Translation',
+      Icon_Name: 'book-open',
+      bgColor: '#D44563',
+      type: 'feather',
+      screenName: CONSTANT.App.screenNames.QuranTransScreen,
+    },
+  ];
+  const Data4 = [
+    {
+      id: 10,
+      name: 'Salah Time',
+      Icon_Name: 'clock',
+      bgColor: '#A7c865',
+      type: 'feather',
+      screenName: CONSTANT.App.tabMenu.prayerTab,
     },
   ];
 
@@ -169,6 +206,108 @@ const MoreScreen = ({navigation}) => {
                     justifyContent: 'center',
                     marginLeft: 10,
                     //   marginTop: '-10%',
+                  }}
+                  key={item.id}>
+                  <Icon
+                    name={item.Icon_Name}
+                    type={item.type}
+                    size={22}
+                    color="#FFFFFF"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: 70,
+                    marginTop: 5,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                  }}>
+                  <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
+                    {item.name}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          );
+        })}
+      </View>
+      <View
+        style={{
+          height: 110,
+          marginTop: 31,
+          marginLeft: -10,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          flexWrap: 'wrap',
+        }}>
+        {Data3.map(item => {
+          return (
+            <View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(item.screenName)}>
+                <View
+                  style={{
+                    width: 65,
+                    height: 65,
+                    backgroundColor: item.bgColor,
+                    borderRadius: 20,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                    //   marginTop: '-10%',
+                  }}
+                  key={item.id}>
+                  <Icon
+                    name={item.Icon_Name}
+                    type={item.type}
+                    size={22}
+                    color="#FFFFFF"
+                  />
+                </View>
+                <View
+                  style={{
+                    width: 70,
+                    marginTop: 5,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                  }}>
+                  <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
+                    {item.name}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          );
+        })}
+      </View>
+      <View
+        style={{
+          height: 110,
+          marginTop: 20,
+          marginLeft: 25,
+          // display: 'flex',
+          // flexDirection: 'row',
+          // justifyContent: 'space-around',
+          // flexWrap: 'wrap',
+        }}>
+        {Data4.map(item => {
+          return (
+            <View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(item.screenName)}>
+                <View
+                  style={{
+                    width: 65,
+                    height: 65,
+                    backgroundColor: item.bgColor,
+                    borderRadius: 20,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                    // marginTop: '-10%',
                   }}
                   key={item.id}>
                   <Icon

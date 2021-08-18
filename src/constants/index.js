@@ -12,7 +12,7 @@ const CONSTANT = {
     },
     colors: {
       Icon_Color: '#A7C829',
-    boxBgColor: ' rgba(1, 4, 23, 1)',
+      boxBgColor: ' rgba(1, 4, 23, 1)',
       themeColor: '#e15e3e',
       placeholderColor: '#a6a6a6',
       inputBackground: '#f9fafc',
@@ -122,8 +122,8 @@ const CONSTANT = {
       speakar: require('../assets/images/speakar.png'),
       masjid: require('../assets/images/masjid.png'),
       base: require('../assets/images/base.png'),
-      contactImg:require('../assets/images/contactImg.png')
-
+      contactImg: require('../assets/images/contactImg.png'),
+      askImam: require('../assets/images/askImam.png'),
     },
     tabMenu: {
       homeTAb: 'home',
@@ -163,6 +163,11 @@ const CONSTANT = {
       ProfileScreen: 'profileScreen',
       ContactUs: 'contactUs',
       EditProfile: 'editProfile',
+      QiblaScreen: 'qiblaScreen',
+      QuranScreen: 'quranScreen',
+      QuranTransScreen: 'quranTransScreen',
+      HadeesScreen: 'hadeesScreen',
+      AskImamScreen: 'askImamScreen',
     },
   },
   Api: {

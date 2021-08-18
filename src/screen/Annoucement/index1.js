@@ -134,8 +134,7 @@ const AnnounceScreen = ({navigation, showData}) => {
         </ScrollView>
         <ScrollView
           verticle={true}
-          style={{top: -45}}
-          contentContainerStyle={{paddingBottom: 20}}
+          style={{top: -20}}
           // onTouchMove={scroll}
           showsVerticalScrollIndicator={false}>
           {/* {selectedIndex === 1 && ( */}
@@ -164,7 +163,7 @@ export default AnnounceScreen;
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: '#515151',
+    backgroundColor: 'rgba(98,98,98,.3)',
     marginTop: 23,
     borderRadius: 10,
     height: 155,

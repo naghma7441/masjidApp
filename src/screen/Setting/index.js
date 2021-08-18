@@ -127,18 +127,17 @@ const SettingScreen = ({navigation}) => {
     }
   };
   return (
-    <BackgroundImage
-      source={CONSTANT.App.screenImages.bg_Image}
-      style={{flex: 1}}>
-      <View style={{display: 'flex', flexDirection: 'row', marginTop: 40}}>
-        <TouchableOpacity
-          style={styles.box}
-          onPress={() => navigation.goBack()}>
-          <Entypo name="chevron-left" size={25} color="#ffffff" />
-        </TouchableOpacity>
-        <Text style={styles.title}>Settings</Text>
-      </View>
-      {/* <ToggleSwitch
+    <BgImage>
+      <View style={styles.container}>
+        <View style={{display: 'flex', flexDirection: 'row', marginTop: 40}}>
+          <TouchableOpacity
+            style={styles.box}
+            onPress={() => navigation.goBack()}>
+            <Entypo name="chevron-left" size={25} color="#ffffff" />
+          </TouchableOpacity>
+          <Text style={styles.title}>Settings</Text>
+        </View>
+        {/* <ToggleSwitch
         isOn={toggle}
         onColor="#a7c829"
         offColor="#9D9D9D"
@@ -146,209 +145,191 @@ const SettingScreen = ({navigation}) => {
         size="medium"
         onToggle={toggleButton}
       /> */}
-      <ScrollView
-        vertical={true}
-        contentContainerStyle={{height: 700}}
-        showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <View style={styles.row}>
-            <AntDesign name="idcard" style={styles.icon} />
-            <Text style={styles.heading}>Account</Text>
-          </View>
-          <View style={styles.row1}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(CONSTANT.App.screenNames.ProfileScreen)
-              }>
-              <Text style={styles.heading1}>Profile</Text>
-            </TouchableOpacity>
+        <ScrollView
+          vertical={true}
+          contentContainerStyle={{height: '100%', paddingBottom: 100}}
+          showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <View style={styles.row}>
+              <AntDesign name="idcard" style={styles.icon} />
+              <Text style={styles.heading}>Account</Text>
+            </View>
+            <View style={styles.rrow1}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.ProfileScreen)
+                }>
+                <Text style={styles.heading1}>Profile</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(CONSTANT.App.screenNames.ProfileScreen)
-              }>
-              <Entypo
-                name="chevron-right"
-                size={25}
-                color="#ffffff"
-                style={styles.icon1}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row2}>
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(CONSTANT.App.screenNames.ChangePassword)
-              }>
-              <Text style={styles.heading2}>Change password</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.ProfileScreen)
+                }>
+                <Entypo
+                  name="chevron-right"
+                  size={25}
+                  color="#ffffff"
+                  style={styles.icon1}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.row2}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.ChangePassword)
+                }>
+                <Text style={styles.heading2}>Change password</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(CONSTANT.App.screenNames.ChangePassword)
-              }>
-              <Entypo
-                name="chevron-right"
-                size={25}
-                color="#ffffff"
-                style={styles.icon2}
-              />
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.ChangePassword)
+                }>
+                <Entypo
+                  name="chevron-right"
+                  size={25}
+                  color="#ffffff"
+                  style={styles.icon2}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <View style={styles.container1}>
-          <View style={styles.row}>
-            <Feather name="bell" style={styles.icon} />
-            <Text style={styles.heading}>Notifcations</Text>
-          </View>
-          <View style={styles.row1}>
-            <TouchableOpacity>
-              <Text style={styles.heading1}>In app notification</Text>
-            </TouchableOpacity>
+          <View style={styles.container1}>
+            <View style={styles.row}>
+              <Feather name="bell" style={styles.icon} />
+              <Text style={styles.heading}>Notifcations</Text>
+            </View>
+            <View style={styles.row11}>
+              <TouchableOpacity>
+                <Text style={styles.heading1}>In app notification</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <ToggleSwitch
-                isOn={toggle1}
-                onColor="#a7c829"
-                offColor="#9D9D9D"
-                labelStyle={{color: 'black', fontWeight: '900'}}
-                size="mediums"
-                onToggle={toggle1Button}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row2}>
-            <TouchableOpacity>
-              <Text style={styles.heading5}>Verse of day</Text>
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <ToggleSwitch
+                  isOn={toggle1}
+                  onColor="#a7c829"
+                  offColor="#9D9D9D"
+                  labelStyle={{color: 'black', fontWeight: '900'}}
+                  size="mediums"
+                  onToggle={toggle1Button}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.row2}>
+              <TouchableOpacity>
+                <Text style={styles.heading5}>Verse of day</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <ToggleSwitch
-                isOn={toggle2}
-                onColor="#a7c829"
-                offColor="#9D9D9D"
-                labelStyle={{color: 'black', fontWeight: '900'}}
-                size="medium"
-                onToggle={toggle2Button}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row3}>
-            <TouchableOpacity>
-              <Text style={styles.heading6}>Miscellaneous</Text>
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <ToggleSwitch
+                  isOn={toggle2}
+                  onColor="#a7c829"
+                  offColor="#9D9D9D"
+                  labelStyle={{color: 'black', fontWeight: '900'}}
+                  size="medium"
+                  onToggle={toggle2Button}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.row3}>
+              <TouchableOpacity>
+                <Text style={styles.heading6}>Miscellaneous</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <ToggleSwitch
-                isOn={toggle3}
-                onColor="#a7c829"
-                offColor="#9D9D9D"
-                labelStyle={{color: 'black', fontWeight: '900'}}
-                size="medium"
-                onToggle={toggle3Button}
-              />
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <ToggleSwitch
+                  isOn={toggle3}
+                  onColor="#a7c829"
+                  offColor="#9D9D9D"
+                  labelStyle={{color: 'black', fontWeight: '900'}}
+                  size="medium"
+                  onToggle={toggle3Button}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <View style={styles.container3}>
-          <View style={styles.row}>
-            <FontAwesome name="credit-card" style={styles.icon} />
-            <Text style={styles.heading}>Card and Payement</Text>
-          </View>
-          <View style={styles.row1}>
-            <TouchableOpacity>
-              <Text style={styles.heading6}>Auto payement</Text>
-            </TouchableOpacity>
 
-            <TouchableOpacity>
-              <ToggleSwitch
-                isOn={toggle4}
-                onColor="#a7c829"
-                offColor="#9D9D9D"
-                labelStyle={{color: 'black', fontWeight: '900'}}
-                size="medium"
-                onToggle={toggle4Button}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row2}>
-            <TouchableOpacity>
-              <Text style={styles.heading7}>Payment method</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.container4}>
-          <View style={styles.row}>
-            <Entypo name="dots-three-horizontal" style={styles.icon} />
-            <Text style={styles.heading}>Others</Text>
-          </View>
-          <View style={styles.row1}>
-            <TouchableOpacity>
-              <Text style={styles.heading1}>Help</Text>
-            </TouchableOpacity>
+          <View style={styles.container4}>
+            <View style={styles.row}>
+              <Entypo name="dots-three-horizontal" style={styles.icon} />
+              <Text style={styles.heading}>Others</Text>
+            </View>
+            <View style={styles.row1}>
+              <TouchableOpacity>
+                <Text style={styles.heading1}>Ask Imam</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <Entypo
-                name="chevron-right"
-                size={25}
-                color="#ffffff"
-                style={styles.icon1}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.row2}>
-            <TouchableOpacity  onPress={()=>navigation.navigate(CONSTANT.App.screenNames.ContactUs)}>
-              <Text style={styles.heading8}>Contact us</Text>
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <Entypo
+                  name="chevron-right"
+                  size={25}
+                  color="#ffffff"
+                  style={styles.icon1}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.row2}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.ContactUs)
+                }>
+                <Text style={styles.heading8}>Contact us</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <Entypo
-                name="chevron-right"
-                size={25}
-                color="#ffffff"
-                style={styles.icon2}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.roww2}>
-            <TouchableOpacity>
-              <Text style={styles.heading9}>Send feedback</Text>
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <Entypo
+                  name="chevron-right"
+                  size={25}
+                  color="#ffffff"
+                  style={styles.icon2}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.roww2}>
+              <TouchableOpacity>
+                <Text style={styles.heading9}>Send feedback</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity>
-              <Entypo
-                name="chevron-right"
-                size={25}
-                color="#ffffff"
-                style={styles.icon2}
-              />
-            </TouchableOpacity>
+              <TouchableOpacity>
+                <Entypo
+                  name="chevron-right"
+                  size={25}
+                  color="#ffffff"
+                  style={styles.icon2}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </ScrollView>
-    </BackgroundImage>
+        </ScrollView>
+      </View>
+    </BgImage>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     flex: 1,
+    width: '100%',
+    // backgroundColor: 'red',
+    // paddingHorizontal: 10,
+
+    overflow: 'hidden',
   },
   container1: {
     width: '100%',
-    flex: 1,
-    top: -25,
+    // flex: 1,
+    marginBottom: 90,
+    // top: -85,
   },
-  container3: {
-    width: '100%',
-    flex: 1,
-    top: -20,
-  },
+
   container4: {
     width: '100%',
-    flex: 1,
-    top: -53,
+    // flex: 1,
+    // flex: 1,
+
+    // top: -133,
+    paddingBottom: 20,
   },
   title: {
     color: '#fff',
@@ -434,10 +415,29 @@ const styles = StyleSheet.create({
     left: 35,
     top: 35,
   },
+  rrow1: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginHorizontal: 10,
+    // width: '100%',
+    // left: 20,
+    top: 65,
+  },
   row1: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginHorizontal: 25,
+    // width: '100%',
+    // left: 20,
+    top: 65,
+  },
+  row11: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginHorizontal: 3,
     // width: '100%',
     // left: 20,
     top: 65,
@@ -446,6 +446,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginHorizontal: 8,
+
     // width: '100%',
     // left: 20,
     top: 80,
@@ -454,6 +456,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginHorizontal: 10,
+
     // width: '100%',
     // left: 20,
     top: 100,
