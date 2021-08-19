@@ -35,6 +35,11 @@ import {
   ChangePassword,
   ContactUsScreen,
   EditProfileScreen,
+  QiblaScreen,
+  QuranScreen,
+  QuranTransScreen,
+  HadeesScreen,
+  AskImamScreen,
 } from '../screen';
 
 import CustomTabBar from '../component/CustomTabBar';
@@ -75,6 +80,26 @@ const servStack = () => {
       <serviceStack.Screen
         name={CONSTANT.App.screenNames.EditProfile}
         component={EditProfileScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.QiblaScreen}
+        component={QiblaScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.QuranScreen}
+        component={QuranScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.QuranTransScreen}
+        component={QuranTransScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.HadeesScreen}
+        component={HadeesScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.AskImamScreen}
+        component={AskImamScreen}
       />
     </serviceStack.Navigator>
   );

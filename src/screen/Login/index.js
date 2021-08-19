@@ -151,15 +151,11 @@ const LoginScreen = ({navigation}) => {
       </View>
       <View style={styles.textContain}>
         <Text style={styles.text}>Login</Text>
-        <View style={{width:'70%'}}>
-        <Text style={[styles.paragraph]}>
-          Welcome back! Build your prayer
-           habbits with Athan.
-        </Text>
-
+        <View style={{width: '70%'}}>
+          <Text style={[styles.paragraph]}>
+            Welcome back! Build your prayer habbits with Athan.
+          </Text>
         </View>
-
-
       </View>
 
       <View style={styles.medium}>
@@ -178,7 +174,7 @@ const LoginScreen = ({navigation}) => {
             color: '#FC6C6B',
             fontSize: 14,
             marginBottom: 20,
-            marginTop:5
+            marginTop: 5,
           }}>
           {errEmail}
         </Text>
@@ -196,6 +192,7 @@ const LoginScreen = ({navigation}) => {
             setSecure(!isSecure);
           }}
           leftIcon={'lock'}
+          style={{marginTop: -23}}
         />
 
         <Text
@@ -203,8 +200,8 @@ const LoginScreen = ({navigation}) => {
             color: '#FC6C6B',
             fontSize: 14,
             // marginBottom: ,
-            
-marginTop:5
+
+            marginTop: 5,
           }}>
           {errPass}
         </Text>
@@ -215,6 +212,7 @@ marginTop:5
             justifyContent: 'flex-start',
             alignItems: 'center',
             marginLeft: -15,
+            marginTop: -10,
           }}>
           <CheckBox
             title="Remember me"
@@ -298,16 +296,23 @@ marginTop:5
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-          marginTop: 50,
+          // marginTop: 50,
+          paddingHorizontal: 20,
         }}>
         <Text style={styles.paragraph}>Don’t have an account?</Text>
         <TouchableOpacity>
           <Text
-            style={{color: '#A7C829', marginTop: 10, fontSize: 16}}
+            style={{
+              color: '#A7C829',
+              marginTop: 7,
+              fontSize: 16,
+              fontWeight: '500',
+              left: 3,
+            }}
             onPress={() =>
               navigation.navigate(CONSTANT.App.screenNames.signup)
             }>
-            Signup
+            Register
           </Text>
         </TouchableOpacity>
       </View>
@@ -326,7 +331,7 @@ marginTop:5
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'rgba(1, 4, 23, 0.8)'
+            backgroundColor: 'rgba(1, 4, 23, 0.8)',
           }}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Incorrect Password</Text>
@@ -406,11 +411,11 @@ const styles = StyleSheet.create({
   },
   medium: {
     width: '100%',
-    height: 470,
+    // height: 470,
     backgroundColor: CONSTANT.App.colors.boxBgColor,
-marginTop:15,
+    marginTop: 15,
     borderRadius: 20,
-    padding: 20,
+    padding: 10,
   },
   inputContainer: {
     width: '100%',

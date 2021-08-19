@@ -244,50 +244,50 @@ const EventScreen = ({navigation}) => {
                 </View>
               </Carousel>
             )}
-            <View style={{marginTop:-25}}>
-            <ScrollView
-              horizontal={true}
-              // contentContainerStyle={{height: 120}}
-              showsHorizontalScrollIndicator={false}>
-              {data.map(item => {
-                console.log('hhhu', item.title);
-                return (
-                  <>
-                    <View key={item.id} style={{height: 120}}>
-                      <Tab
-                        value={true}
-                        onChange={() => onchangeTab(item)}
-                        key={item.id}
-                        indicatorStyle={[
-                          selectedIndex === 0 && styles.borderTab,
-                          {
-                            width: item.id === selectedIndex ? 40 : 0,
-                            borderBottomWidth:
-                              item.id === selectedIndex ? 3 : 0,
-                            borderBottomColor:
-                              item.id === selectedIndex ? '#A7C829' : 'none',
-                            marginLeft: 10,
-                          },
-                        ]}>
-                        <Tab.Item
-                          title={item.title}
-                          titleStyle={{
-                            color: '#A7C829',
-                            fontSize: 22,
-                            textTransform: 'none',
-                            marginLeft: -15
-                          }}
-                        />
-                      </Tab>
-                    </View>
-                  </>
-                );
-              })}
-            </ScrollView>
-</View>
+            <View style={{marginTop: -25}}>
+              <ScrollView
+                horizontal={true}
+                // contentContainerStyle={{height: 120}}
+                showsHorizontalScrollIndicator={false}>
+                {data.map(item => {
+                  console.log('hhhu', item.title);
+                  return (
+                    <>
+                      <View key={item.id} style={{height: 120}}>
+                        <Tab
+                          value={true}
+                          onChange={() => onchangeTab(item)}
+                          key={item.id}
+                          indicatorStyle={[
+                            selectedIndex === 0 && styles.borderTab,
+                            {
+                              width: item.id === selectedIndex ? 40 : 0,
+                              borderBottomWidth:
+                                item.id === selectedIndex ? 3 : 0,
+                              borderBottomColor:
+                                item.id === selectedIndex ? '#A7C829' : 'none',
+                              marginLeft: 10,
+                            },
+                          ]}>
+                          <Tab.Item
+                            title={item.title}
+                            titleStyle={{
+                              color: '#A7C829',
+                              fontSize: 22,
+                              textTransform: 'none',
+                              marginLeft: -15,
+                            }}
+                          />
+                        </Tab>
+                      </View>
+                    </>
+                  );
+                })}
+              </ScrollView>
+            </View>
             <ScrollView
               verticle={true}
-              style={{marginTop: -60,marginleft:10}}
+              style={{marginTop: -60, marginleft: 10}}
               onTouchMove={scroll}
               showsVerticalScrollIndicator={false}>
               {selectedIndex === 1 && (
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     height: 72,
-    backgroundColor: '#515151',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     borderRadius: 15,
     top: 60,
     flexDirection: 'row',

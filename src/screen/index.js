@@ -17,8 +17,13 @@ import AnnounceScreen from './Annoucement';
 import AnnounceDetail from './AnnounceDetail';
 import LiveStreamScreen from './LiveStream';
 import ChangePassword from './ChangePassword';
-import EditProfileScreen from './EditProfile'
-import ContactUsScreen from './ContactUs'
+import EditProfileScreen from './EditProfile';
+import ContactUsScreen from './ContactUs';
+import QiblaScreen from './QiblaDirection';
+import QuranScreen from './Quran';
+import QuranTransScreen from './QuranTranslation';
+import HadeesScreen from './HadeesBooks';
+import AskImamScreen from './AskImam';
 export {
   HomeScreen,
   LoginScreen,
@@ -40,5 +45,10 @@ export {
   LiveStreamScreen,
   ChangePassword,
   EditProfileScreen,
-  ContactUsScreen
+  ContactUsScreen,
+  QiblaScreen,
+  QuranScreen,
+  QuranTransScreen,
+  HadeesScreen,
+  AskImamScreen,
 };

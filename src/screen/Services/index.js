@@ -47,7 +47,7 @@ const Services = ({navigation}) => {
       Icon_Name: 'mic',
       bgColor: '#DFBB2B',
       type: 'feather',
-      Screen: CONSTANT.App.screenNames.servicesDetail,
+      Screen: CONSTANT.App.screenNames.AskImamScreen,
     },
     {
       id: 3,

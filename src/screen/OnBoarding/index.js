@@ -57,8 +57,8 @@ const OnBoardingScreen = ({navigation}) => {
               backgroundColor: '#fff',
               color: 'white',
               fontSize: 20,
-              width: 14,
-              height: 14,
+              width: 12,
+              height: 12,
             }}
             contentContainerStyle={{
               justifyContent: 'center',
@@ -70,21 +70,25 @@ const OnBoardingScreen = ({navigation}) => {
               borderWidth: 0,
               borderWidth: 0,
               color: 'white',
-              height: 14,
+              height: 12,
 
-              width: 14,
+              width: 12,
             }}
             bulletsContainerStyle={{
               marginRight: 10,
               bottom: '0%',
-
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
               borderWidth: 1,
               borderStyle: 'solid',
               borderColor: 'rgba(157, 157, 157, 0.2)',
               backgroundColor: 'rgba(157, 157, 157, 0.2)',
-              width: '10%',
-              height: '10%',
-              marginLeft: '25%',
+              width: '0%',
+              height: '8%',
+              marginBottom: 50,
+              // top: -20,
+              marginLeft: '29%',
               borderRadius: 20,
             }}>
             <View
@@ -95,6 +99,7 @@ const OnBoardingScreen = ({navigation}) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  top: -20,
                 },
               ]}>
               <Text style={styles.donation}>Donation Management</Text>
@@ -124,6 +129,7 @@ const OnBoardingScreen = ({navigation}) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  top: -20,
                 },
               ]}>
               <Text style={styles.donation}>Donation Management</Text>
@@ -137,7 +143,7 @@ const OnBoardingScreen = ({navigation}) => {
                   paddingHorizontal: 60,
                   // flexWrap: 'wrap',
                   width: '100%',
-                  right: 20,
+                  right: 50,
                   // bottom: 20,
                 }}>
                 Aliquam erat volutpat. Vestibulum facilisis, ante ac fermevntum
@@ -152,6 +158,7 @@ const OnBoardingScreen = ({navigation}) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  top: -20,
                 },
               ]}>
               <Text style={styles.donation}>Donation Management</Text>
@@ -165,7 +172,7 @@ const OnBoardingScreen = ({navigation}) => {
                   paddingHorizontal: 60,
                   // flexWrap: 'wrap',
                   width: '100%',
-                  right: 20,
+                  right: 50,
                   // bottom: 20,
                 }}>
                 Aliquam erat volutpat. Vestibulum facilisis, ante ac fermevntum
@@ -173,7 +180,7 @@ const OnBoardingScreen = ({navigation}) => {
               </Text>
             </View>
           </Carousel>
-          <View style={{bottom: 70, paddingHorizontal: 20}}>
+          <View style={{bottom: 125, paddingHorizontal: 20}}>
             <CustomButton
               variant={'filled'}
               title={'Login'}
@@ -193,7 +200,20 @@ const OnBoardingScreen = ({navigation}) => {
                 width: '100%',
                 borderWidth: 1,
                 borderColor: '#A7C829',
-                top: 20,
+                top: 16,
+
+                // bottom: '55%',
+              }}
+            />
+            <CustomButton
+              // variant={"filled"}
+              title={'Continue as guest'}
+              onPress={() => navigation.navigate(CONSTANT.App.tabMenu.homeTAb)}
+              style={{
+                width: '100%',
+                borderWidth: 1,
+                borderColor: '#A7C829',
+                top: 32,
 
                 // bottom: '55%',
               }}
@@ -208,9 +228,9 @@ const OnBoardingScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width:'100%',
+    width: '100%',
 
-    paddingHorizontal: 24,
+    paddingHorizontal: 10,
     paddingVertical: 80,
   },
   logo: {
@@ -224,11 +244,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     paddingBottom: 100,
-    height: hp('80%'),
+    top: -40,
+    height: hp('90%'),
     // height: 200,
   },
   card1: {
-    backgroundColor: 'rgba(98, 98, 98, .8)',
+    backgroundColor: '#1a1d2e',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingVertical: 44,
