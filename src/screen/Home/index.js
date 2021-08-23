@@ -626,10 +626,7 @@ const HomeScreen = ({navigation}) => {
               </Carousel>
             </View>
           </View>
-<<<<<<< HEAD
           {/* <!------------------cmponent---------> */}
-=======
->>>>>>> a47bf51849b9861e44ff356eb3a011985df7bf5d
 
           <View style={[styles.showAll, {paddingHorizontal: 10}]}>
             <Text style={styles.text}>Today's - Salah Time</Text>
@@ -645,31 +642,6 @@ const HomeScreen = ({navigation}) => {
                     
             >
             <Text style={{color: '#A7C829', fontSize: 18}}>See all</Text>
-<<<<<<< HEAD
-=======
-          </View>
-          <View style={{marginTop: 10}}>
-            {/* <Text
-              style={{
-                color: '#9D9D9D',
-                alignItems: 'stretch',
-                // letterSpacing: 1,
-                fontSize: 14,
-                paddingLeft: 10,
-                lineHeight: 17,
-                fontWeight: '500',
-              }}>
-              India Standard Time (IST) is 5:30 hours
-            </Text> */}
-          </View>
-          <View style={styles.calender}>
-            <View style={styles.rowData}>
-              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Namaz</Text>
-              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Athaan Time</Text>
-              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Iqamah Time</Text>
-            </View>
-            <View style={styles.horizoLine}></View>
->>>>>>> a47bf51849b9861e44ff356eb3a011985df7bf5d
 
             </TouchableOpacity>
 

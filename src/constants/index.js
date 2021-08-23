@@ -168,6 +168,9 @@ const CONSTANT = {
       QuranTransScreen: 'quranTransScreen',
       HadeesScreen: 'hadeesScreen',
       AskImamScreen: 'askImamScreen',
+      ContactForm: 'contactForm',
+      ContactListScreen: 'contactListScreen'
+
     },
   },
   Api: {

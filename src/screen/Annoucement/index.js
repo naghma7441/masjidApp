@@ -110,7 +110,7 @@ const AnnounceScreen = ({navigation, showData}) => {
                     indicatorStyle={[
                       selectedIndex === 0 && styles.borderTab,
                       {
-                        width: item.id === selectedIndex ? 40 : 0,
+                        width: item.id === selectedIndex ? 30 : 0,
                         borderBottomWidth: item.id === selectedIndex ? 3 : 0,
                         borderBottomColor:
                           item.id === selectedIndex ? '#A7C829' : 'none',
@@ -121,7 +121,7 @@ const AnnounceScreen = ({navigation, showData}) => {
                       title={item.title}
                       titleStyle={{
                         color: '#A7C829',
-                        fontSize: 22,
+                        fontSize: 18,
                         textTransform: 'none',
                         marginLeft: -15,
                       }}
@@ -135,7 +135,7 @@ const AnnounceScreen = ({navigation, showData}) => {
         <ScrollView
           verticle={true}
           style={{top: -45}}
-          contentContainerStyle={{paddingBottom: 20}}
+          contentContainerStyle={{paddingBottom: 180}}
           // onTouchMove={scroll}
           showsVerticalScrollIndicator={false}>
           {/* {selectedIndex === 1 && ( */}

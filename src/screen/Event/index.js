@@ -183,19 +183,24 @@ const EventScreen = ({navigation}) => {
                   width: 12,
                 }}
                 bulletsContainerStyle={{
-                  // marginRight: 70,
-                  left: '7%',
-                  // top: '0%',
-                  marginTop: '12%',
-                  marginBottom: 15,
-                  // borderWidth: 1,
-                  // borderStyle: 'solid',
-                  // borderColor: 'rgba(157, 157, 157, 0.6)',
-                  // backgroundColor: 'rgba(157, 157, 157, 0.6)',
-                  width: '5%',
-                  height: '3%',
-                  marginLeft: '30%',
-                  borderRadius: 20,
+                                    // marginRight: 70,
+                                    left: '9%',
+                                    // top: '0%',
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around',
+                                    borderWidth: 1,
+                                    marginTop: '8%',
+                                    marginBottom: 26,
+                                    borderWidth: 1,
+                                    borderStyle: 'solid',
+                                    borderColor: 'rgba(157, 157, 157, 0.4)',
+                                    backgroundColor: 'rgba(157, 157, 157, 0.4)',
+                                    width: '4%',
+                                    height: '0%',
+                                    marginLeft: '30%',
+                                    borderRadius: 20,
+                  
                 }}>
                 <View
                   style={[

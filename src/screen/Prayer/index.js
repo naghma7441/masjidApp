@@ -17,7 +17,6 @@ const PrayerScreen = ({route}) => {
   const [latitude,setLatituse]=useState('')
 
     useEffect(()=>{
-      console.log(full)
       setCurrMonth(currentMonth)
       setLongitue(currentLongitude)
       setLatituse(currentLatitude)

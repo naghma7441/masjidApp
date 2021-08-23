@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, StyleSheet, View, Text, Image} from 'react-native';
 import CONSTANT from '../../constants';
 import {Icon} from 'react-native-elements';
-import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 
+import AntDesign from 'react-native-vector-icons/dist/AntDesign';
+import Entypo from 'react-native-vector-icons/dist/Entypo';
+import {AntDesigns} from '../../constants/Icons';
+import ReadMoreComp from './ReadMore';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import Share from 'react-native-share';
 
 const newAnnounceData = [
   {
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
   // },
   title: {
     color: '#a7c829',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
     top: 5,
     left: 14,
@@ -113,12 +117,26 @@ const styles = StyleSheet.create({
   },
 });
 export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
+  const myCustomShare = async () => {
+    const shareOption = {
+      message:
+        'Announcement one Qurbani, udhiyah in Arabic, means sacrifice. Every Eid ul-Adha, Muslims sacrifice a goat, sheep, cow or camel – or pay to have one slaughtered on their behalf. The act honours the Prophet Ibrahim’s willingness to sacrifice his son Ismail in obedience to God. By making qurbani, Muslims demonstrate their obedience to Allah. At least one third of the meat from the animal should go to people who are poor or in vulnerable situations. ',
+    };
+    try {
+      const shareResponse = await Share.open(shareOption);
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+
   return (
     <>
       <FlatList
         style={{overflow: 'hidden'}}
         data={newAnnounceData}
-        onRefresh={() => {}}
+        onRefresh={() => {
+          // alert = 'jb';
+        }}
         showsVerticalScrollIndicator={false}
         refreshing={false}
         renderItem={({item}) => {
@@ -127,13 +145,26 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
               vertical={true}
               showsVerticalScrollIndicator={false}
               style={{overflow: 'hidden'}}>
-              <TouchableOpacity
+              <View
                 style={styles.container}
-                onPress={() => {
-                  navigation.navigate(CONSTANT.App.screenNames.AnnounceDetail);
-                }}>
+                // onPress={() => {
+                //   navigation.navigate(CONSTANT.App.screenNames.AnnounceDetail);
+                // }}
+              >
                 <View style={styles.announceBox}>
-                  <Text style={styles.title}>{item.title}</Text>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <TouchableOpacity
+                      style={{right: 10, top: 7}}
+                      onPress={myCustomShare}>
+                      <AntDesigns name="sharealt" size={22} color="#ffffff" />
+                    </TouchableOpacity>
+                  </View>
                   <View
                     style={{
                       display: 'flex',
@@ -171,7 +202,7 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
                       </Text>
                     </View>
                   </View>
-                  <Text
+                  {/* <Text
                     style={{
                       fontSize: 16,
                       lineHeight: 17,
@@ -187,9 +218,12 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
                     }}>
                     Hello folks! We are going to conduct a session on Scrum and
                     it's process. Details will be posted soon.
-                  </Text>
+                  </Text> */}
+                  <View style={{marginTop: 20, paddingHorizontal: 10}}>
+                    <ReadMoreComp />
+                  </View>
                 </View>
-              </TouchableOpacity>
+              </View>
             </ScrollView>
           );
         }}
@@ -199,6 +233,17 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
   );
 };
 export const FeaturedAnnounce = ({showData, navigation, handleRefresh}) => {
+  const myCustomShare = async () => {
+    const shareOption = {
+      message:
+        'Announcement one Qurbani, udhiyah in Arabic, means sacrifice. Every Eid ul-Adha, Muslims sacrifice a goat, sheep, cow or camel – or pay to have one slaughtered on their behalf. The act honours the Prophet Ibrahim’s willingness to sacrifice his son Ismail in obedience to God. By making qurbani, Muslims demonstrate their obedience to Allah. At least one third of the meat from the animal should go to people who are poor or in vulnerable situations. ',
+    };
+    try {
+      const shareResponse = await Share.open(shareOption);
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
   return (
     <>
       <FlatList
@@ -215,13 +260,26 @@ export const FeaturedAnnounce = ({showData, navigation, handleRefresh}) => {
               vertical={true}
               showsVerticalScrollIndicator={false}
               style={{overflow: 'hidden'}}>
-              <TouchableOpacity
+              <View
                 style={styles.container}
-                onPress={() => {
-                  navigation.navigate(CONSTANT.App.screenNames.AnnounceDetail);
-                }}>
+                // onPress={() => {
+                //   navigation.navigate(CONSTANT.App.screenNames.AnnounceDetail);
+                // }}
+              >
                 <View style={styles.announceBox}>
-                  <Text style={styles.title}>{item.title}</Text>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <TouchableOpacity
+                      style={{right: 10, top: 7}}
+                      onPress={myCustomShare}>
+                      <AntDesigns name="sharealt" size={22} color="#ffffff" />
+                    </TouchableOpacity>
+                  </View>
                   <View
                     style={{
                       display: 'flex',
@@ -259,7 +317,10 @@ export const FeaturedAnnounce = ({showData, navigation, handleRefresh}) => {
                       </Text>
                     </View>
                   </View>
-                  <Text
+                  <View style={{marginTop: 20, paddingHorizontal: 10}}>
+                    <ReadMoreComp />
+                  </View>
+                  {/* <Text
                     style={{
                       fontSize: 16,
                       lineHeight: 17,
@@ -274,9 +335,9 @@ export const FeaturedAnnounce = ({showData, navigation, handleRefresh}) => {
                     }}>
                     Hello folks! We are going to conduct a session on Scrum and
                     it's process. Details will be posted soon.
-                  </Text>
+                  </Text> */}
                 </View>
-              </TouchableOpacity>
+              </View>
             </ScrollView>
           );
         }}
