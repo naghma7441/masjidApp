@@ -40,6 +40,8 @@ import {
   QuranTransScreen,
   HadeesScreen,
   AskImamScreen,
+  ContactForm,
+  ContactListScreen
 } from '../screen';
 
 import CustomTabBar from '../component/CustomTabBar';
@@ -100,6 +102,14 @@ const servStack = () => {
       <serviceStack.Screen
         name={CONSTANT.App.screenNames.AskImamScreen}
         component={AskImamScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.ContactForm}
+        component={ContactForm}
+      />
+       <serviceStack.Screen
+        name={CONSTANT.App.screenNames.ContactListScreen}
+        component={ContactListScreen}
       />
     </serviceStack.Navigator>
   );
@@ -190,7 +200,7 @@ function AppStackNavigator() {
   return (
     <Stack.Navigator
       headerMode="none"
-      initialRouteName={CONSTANT.App.screenNames.splash}>
+      initialRouteName={CONSTANT.App.screenNames.home}>
       <Stack.Screen name={CONSTANT.App.screenNames.home} component={MyTabs} />
       <Stack.Screen
         name={CONSTANT.App.screenNames.profile}

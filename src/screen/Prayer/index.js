@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Text, View} from 'react-native';
 import {Icon} from 'react-native-elements/dist/icons/Icon';
@@ -7,9 +7,24 @@ import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import HijriDatePickerAndroid from 'react-native-hijri-date-picker-android';
+import { PrayerTimeComp } from '../../component/PrayerTime';
 
-const PrayerScreen = () => {
+
+const PrayerScreen = ({route}) => {
+  const {currentLongitude,currentLatitude,currentMonth,setCurrentMonth}=route.params;
+  const [currMonth,setCurrMonth] = useState('')
+  const [longitude,setLongitue]=useState('')
+  const [latitude,setLatituse]=useState('')
+
+    useEffect(()=>{
+      setCurrMonth(currentMonth)
+      setLongitue(currentLongitude)
+      setLatituse(currentLatitude)
+    },[currentMonth,currentLongitude,currentLongitude])
+  console.log(route.params)
   const calendar = () => {
+
+  
     let options = {
       date: new Date(),
       minDate: new Date(new Date().getTime() - 1 * 30 * 24 * 60 * 60 * 1000),
@@ -48,6 +63,7 @@ const PrayerScreen = () => {
       },
     );
 
+
     //convert gregorian date object to hijri {year,month,day}
     HijriDatePickerAndroid.convertGregorianDateToHijriDate(new Date()).then(
       function ({year, day, month}) {
@@ -55,6 +71,40 @@ const PrayerScreen = () => {
       },
     );
   };
+
+  // useEffect(()=>{
+  //   rightHandler()
+  // },[currentMonth])
+  const rightHandler=()=>{
+  
+  
+    console.log("hiiii")
+    if(currMonth > 0 ){
+      setCurrMonth(currMonth + 1)
+
+      if(currMonth > 12 || currMonth === 12){
+        setCurrMonth(1)
+      }
+
+    }
+  }
+  const leftHandler=()=>{
+
+    if(currMonth > 0 ){
+      setCurrMonth(currMonth - 1)
+      if(currMonth < 1 || currMonth === 1){
+        setCurrMonth(12)
+      }
+
+    }
+    console.log(currentMonth)
+
+
+
+      
+      
+  }
+
   return (
     <BgImage>
       <View style={styles.container}>
@@ -75,6 +125,7 @@ const PrayerScreen = () => {
             }}>
             Salah Time
           </Text>
+
           <TouchableOpacity onPress={calendar}>
             <AntDesign
               name="calendar"
@@ -93,7 +144,7 @@ const PrayerScreen = () => {
             style={styles.box}
             // onPress={}
           >
-            <Entypo name="chevron-left" size={25} color="#ffffff" />
+            <Entypo name="chevron-left" size={25} color="#ffffff" onPress={()=>leftHandler()}/>
           </TouchableOpacity>
           <View>
             <Text
@@ -104,7 +155,7 @@ const PrayerScreen = () => {
                 left: 20,
                 lineHeight: 20,
               }}>
-              16 July 21
+              16 {currMonth} 21
             </Text>
             <Text
               style={{
@@ -119,83 +170,93 @@ const PrayerScreen = () => {
             </Text>
           </View>
           <TouchableOpacity style={styles.box1}>
-            <Entypo name="chevron-right" size={22} color="#ffffff" />
+            <Entypo name="chevron-right" size={22} color="#ffffff" onPress={()=>rightHandler()} />
           </TouchableOpacity>
         </View>
-        <View style={styles.calender}>
-          <View style={styles.rowData}>
-            <Text style={{fontSize: 15, color: '#fff'}}>Namaz</Text>
-            <Text style={{fontSize: 15, color: '#fff'}}>Athaan Time</Text>
-            <Text style={{fontSize: 15, color: '#fff'}}>Iqamah Time</Text>
-          </View>
-          <View style={styles.horizoLine}></View>
 
-          <View style={styles.rowData}>
-            <Text style={styles.calanderText}>Fajr</Text>
 
-            <Text style={styles.calanderText}>06:00 AM</Text>
-            <Text style={styles.calanderText}>06:00 AM</Text>
-          </View>
-          <View style={styles.rowData}>
-            <Text style={{color: 'white', fontSize: 15, marginRight: 20}}>
-              Sunrise
-              <Feather
-                name="sun"
-                style={{
-                  position: 'absolute',
-                  color: '#9D9D9D',
-                  width: 15.58,
-                  height: 15.58,
-                  left: 23,
-                }}
-              />
-            </Text>
-            <Text style={styles.calanderText}></Text>
-            <Text style={styles.calanderText}>06:10 AM</Text>
-          </View>
-          <View style={styles.rowData}>
-            <Text style={{fontSize: 16, color: '#A7C829'}}>Dhuhr</Text>
-            <Text style={{fontSize: 16, color: '#A7C829', paddingRight: 11}}>
-              12:45 AM
-            </Text>
-            <Text style={{fontSize: 17, color: '#A7C829', paddingLeft: 8}}>
-              06:00 AM
-            </Text>
-          </View>
-          <View style={styles.rowData}>
-            <Text style={styles.calanderText}>Asr</Text>
-            <Text style={styles.calanderText}>04:04 AM</Text>
-            <Text style={styles.calanderText}>06:00 AM</Text>
-          </View>
-          <View style={styles.rowData}>
-            <Text style={styles.calanderText}>Maghrib</Text>
-            <Text style={{color: 'white', paddingRight: 38, fontSize: 16}}>
-              07:29 AM
-            </Text>
-            <Text style={styles.calanderText}>06:00 AM</Text>
-          </View>
-          <View style={styles.rowData}>
-            <Text style={styles.calanderText}>Isha</Text>
-            <Text style={{color: 'white', fontSize: 16, paddingRight: 10}}>
-              08:55 PM
-            </Text>
-            <Text style={styles.calanderText}>06:00 AM</Text>
-          </View>
-          <View style={styles.horizoLine}></View>
-          <View style={[styles.rowData, {marginBottom: 15}]}>
-            <Text style={styles.calanderText}>Qiyam</Text>
-            <Text style={styles.calanderText}></Text>
-            <Text style={styles.calanderText}>01:32 AM</Text>
-          </View>
-          <View style={[styles.rowData, {marginBottom: 15}]}>
-            <Text style={styles.calanderText}>Tahajjud</Text>
-            <Text style={{color: 'white', fontSize: 16, paddingRight: 34}}>
-              04:32 AM
-            </Text>
-            <Text style={styles.calanderText}>04:32 AM</Text>
-          </View>
-        </View>
-      </View>
+        <PrayerTimeComp 
+          currentLatitude={latitude}
+          currentLongitude={longitude}
+          currentMonth={currMonth}
+          textDesign={{marginTop:90}}
+          />
+
+
+{/* 
+          <View style={styles.calender}>
+            <View style={styles.rowData}>
+              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Namaz</Text>
+              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Athaan Time</Text>
+              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Iqamah Time</Text>
+            </View>
+            <View style={styles.horizoLine}></View>
+
+            <View style={styles.rowData}>
+              <Text style={styles.calanderText}>Fajr</Text>
+              <Text style={styles.calanderText}>09:09</Text>
+              <Text style={styles.calanderText}>06:00 AM</Text>
+            </View>
+            <View style={styles.rowData}>
+              <Text style={{color: 'white', fontSize: 15, marginRight: 20}}>
+                Sunrise
+                <Feather
+                  name="sun"
+                  style={{
+                    position: 'absolute',
+                    color: '#9D9D9D',
+                    width: 15.58,
+                    height: 15.58,
+                    left: 23,
+                  }}
+                />
+              </Text>
+              <Text style={[styles.calanderText,{marginRight:65}]}>23:55</Text>
+              <Text style={styles.calanderText}>06:10 AM</Text>
+            </View>
+            <View style={styles.rowData}>
+              <Text style={{fontSize: 16, color: '#A7C829'}}>Dhuhr</Text>
+              <Text style={{fontSize: 16, color: '#A7C829', paddingRight: 11}}>
+                12:00
+              </Text>
+              <Text style={{fontSize: 17, color: '#A7C829', paddingLeft: 8}}>
+                06:00 AM
+              </Text>
+            </View>
+            <View style={styles.rowData}>
+              <Text style={styles.calanderText}>Asr</Text>
+              <Text style={styles.calanderText}>12:99</Text>
+              <Text style={styles.calanderText}>06:00 AM</Text>
+            </View>
+            <View style={styles.rowData}>
+              <Text style={styles.calanderText}>Maghrib</Text>
+              <Text style={{color: 'white', paddingRight: 38, fontSize: 16}}>
+                12:00
+              </Text>
+              <Text style={styles.calanderText}>06:00 AM</Text>
+            </View>
+            <View style={styles.rowData}>
+              <Text style={styles.calanderText}>Isha</Text>
+              <Text style={{color: 'white', fontSize: 16, paddingRight: 10}}>
+                23.89
+              </Text>
+              <Text style={styles.calanderText}>06:00 AM</Text>
+            </View>
+            <View style={styles.horizoLine}></View>
+            <View style={[styles.rowData, {marginBottom: 15}]}>
+              <Text style={styles.calanderText}>Qiyam</Text>
+              <Text style={styles.calanderText}></Text>
+              <Text style={styles.calanderText}>01:32 AM</Text>
+            </View>
+            <View style={[styles.rowData, {marginBottom: 15}]}>
+              <Text style={styles.calanderText}>Sunset</Text>
+              <Text style={{color: 'white', fontSize: 16, paddingRight: 34}}>
+                04:32 AM
+              </Text>
+              <Text style={styles.calanderText}>04:32 AM</Text>
+            </View>
+          </View> */}
+ </View>
     </BgImage>
   );
 };
@@ -205,13 +266,11 @@ export default PrayerScreen;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
-    paddingTop: 20,
   },
   showAll: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 20,
   },
   box: {
     width: 40,
@@ -265,6 +324,7 @@ const styles = StyleSheet.create({
   calanderText: {
     color: '#FFFFFF',
     fontSize: 16,
+    marginLeft:10
   },
   rowData: {
     flexDirection: 'row',

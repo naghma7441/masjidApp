@@ -24,6 +24,8 @@ import QuranScreen from './Quran';
 import QuranTransScreen from './QuranTranslation';
 import HadeesScreen from './HadeesBooks';
 import AskImamScreen from './AskImam';
+import ContactForm from './ContactForm/index '
+import ContactListScreen from './ContactList'
 export {
   HomeScreen,
   LoginScreen,
@@ -51,4 +53,6 @@ export {
   QuranTransScreen,
   HadeesScreen,
   AskImamScreen,
+  ContactForm, 
+  ContactListScreen
 };
