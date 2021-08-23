@@ -21,6 +21,8 @@ import Textarea from '../../component/Textarea';
 import ImagePicker from 'react-native-image-crop-picker';
 import CustomButton from '../../component/CustomButton';
 import Feather from 'react-native-vector-icons/Feather';
+import ReadMore from 'react-native-read-more-text';
+import ReadMoreComp from './ReadMore';
 
 const AskImamScreen = () => {
   const [maleChecked, setMaleChecked] = useState(false);
@@ -79,11 +81,10 @@ const AskImamScreen = () => {
           />
           <View style={{width: '100%', paddingHorizontal: 20}}>
             <Text style={styles.heading}>What is Ask imam</Text>
-            <Text style={styles.title}>
-              Our Ask Imam service is an outlet for all members of our community
-              to get their religious questions answered by our Imam, Shaykh Alaa
-              El Saadawi.
-            </Text>
+
+            {/* <Text style={styles.title}> */}
+            <ReadMoreComp />
+            {/* </Text> */}
           </View>
           <View style={{width: '100%', paddingHorizontal: 20}}>
             <Text style={styles.heading1}> Ask imam now</Text>
@@ -444,7 +445,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    paddingHorizontal: 20,
+    paddingHorizontal: 5,
 
     overflow: 'hidden',
   },
@@ -456,9 +457,9 @@ const styles = StyleSheet.create({
   },
   inContainer1: {
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    top: 90,
+    top: 40,
     overflow: 'hidden',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 10,
     paddingTop: 20,
   },
@@ -515,11 +516,11 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: '400',
     lineHeight: 20,
-    width: '100%',
-    left: -15,
+    // width: '100%',
+    left: -18,
     top: 10,
     // height: 67,
   },

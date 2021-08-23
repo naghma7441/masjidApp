@@ -1,59 +1,43 @@
-import React, {Component} from 'react';
-import {
-  Image,
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  Animated,
-} from 'react-native';
-import {Grid, Col, Row} from 'react-native-easy-grid';
-import {
-  magnetometer,
-  SensorTypes,
-  setUpdateIntervalForType,
-} from 'react-native-sensors';
-import LPF from 'lpf';
-import compass from '../../assets/images/compass.png';
-import {BgImage} from '../../component/ImageContainer';
+import React, {useState, useEffect} from 'react';
+import {Image, StyleSheet} from 'react-native';
+import CompassHeading from 'react-native-compass-heading';
 
-const {height, width} = Dimensions.get('window');
-export default class QiblaScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentWillMount() {
-    this._animeRotation = new Animated.Value(0);
-  }
-  componentDidMount() {
-    this.startAnimation();
-  }
-  startAnimation() {
-    Animated.timing(this._animeRotation, {
-      toValue: this.props.magn, //<-- What put here?
-      duration: 1000,
-    }).start(() => {
-      this.startAnimation();
+const QiblaScreen = () => {
+  const [compassHeading, setCompassHeading] = useState(0);
+
+  useEffect(() => {
+    const degree_update_rate = 3;
+
+    // accuracy on android will be hardcoded to 1
+    // since the value is not available.
+    // For iOS, it is in degrees
+    CompassHeading.start(degree_update_rate, {heading, accuracy} => {
+      setCompassHeading(heading);
     });
-  }
-  render() {
-    var interpolatedRotateAnimation = this._animeRotation.interpolate({
-      inputRange: [0, 100],
-      outputRange: ['0deg', '360deg'],
-    });
-    return (
-      <View>
-        <Animated.View
-          style={[
-            // styles.box,
-            {transform: [{rotate: interpolatedRotateAnimation}]},
-          ]}>
-          <Image
-            style={{flex: 1}}
-            source={require('../../assets/images/kibla.png')}
-          />
-        </Animated.View>
-      </View>
-    );
-  }
-}
+
+    return () => {
+      CompassHeading.stop();
+    };
+  }, []);
+
+  return (
+    <Image
+      style={[
+        styles.image,
+        {transform: [{rotate: `${360 - compassHeading}deg`}]},
+      ]}
+      resizeMode="contain"
+      source={require('../../assets/images/kibla.png')}
+    />
+  );
+};
+
+const styles = StyleSheet.create({
+  image: {
+    width: '90%',
+    flex: 1,
+    alignSelf: 'center',
+  },
+});
+
+export default QiblaScreen;

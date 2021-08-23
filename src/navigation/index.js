@@ -40,6 +40,7 @@ import {
   QuranTransScreen,
   HadeesScreen,
   AskImamScreen,
+  ContactForm,
 } from '../screen';
 
 import CustomTabBar from '../component/CustomTabBar';
@@ -100,6 +101,10 @@ const servStack = () => {
       <serviceStack.Screen
         name={CONSTANT.App.screenNames.AskImamScreen}
         component={AskImamScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.ContactForm}
+        component={ContactForm}
       />
     </serviceStack.Navigator>
   );

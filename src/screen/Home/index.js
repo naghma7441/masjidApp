@@ -73,7 +73,7 @@ const Data = [
     Icon_Name: 'help-circle',
     bgColor: '#A758EB',
     type: 'feather',
-    screenNAme: CONSTANT.App.tabMenu.homeTAb,
+    screenNAme: CONSTANT.App.screenNames.AskImamScreen,
   },
   {
     id: 5,
@@ -133,7 +133,7 @@ const HomeScreen = ({navigation}) => {
   const myCustomShare = async () => {
     const shareOption = {
       message:
-        ' “And indeed, I fear the successors after me, and my wife has been barren, so give me from Yourself an heir. Who will inherit me and inherit from the family of Jacob. And make him, my Lord, pleasing [to You]. Surah Maryam”',
+        '  indeed, I fear the successors after me, and my wife has been barren, so give me from Yourself an heir. Who will inherit me and inherit from the family of Jacob. And make him, my Lord, pleasing [to You]. Surah Maryam”',
     };
     try {
       const shareResponse = await Share.open(shareOption);
@@ -145,7 +145,7 @@ const HomeScreen = ({navigation}) => {
   const onPlay = () => {
     setPlay(true);
     Tts.speak(
-      '“And indeed, I fear the successors after me, and my wife has beenbarren, so give me from Yourself an heir. Who will inherit me and inherit from the family of Jacob. And make him, my Lord, pleasing [to You].”',
+      "wabialfiel , 'akhshaa alkhulafa' min baedi , waqad kanat zawjati kadhalik eaqir , 'aetini min nafsik waritha. min sirithni w min eashayrat yaequba. waijealh yurdi rabiy [lk].",
       {
         androidParams: {
           KEY_PARAM_PAN: -1,
@@ -226,10 +226,13 @@ const HomeScreen = ({navigation}) => {
                 fontStyle: 'normal',
                 top: 10,
               }}>
-              “And indeed, I fear the successors after me, and my wife has been
+              {/* “And indeed, I fear the successors after me, and my wife has been
               barren, so give me from Yourself an heir. Who will inherit me and
               inherit from the family of Jacob. And make him, my Lord, pleasing
-              [to You].”
+              [to You].” */}
+              "wabialfiel , 'akhshaa alkhulafa' min baedi , waqad kanat zawjati
+              kadhalik eaqir , 'aetini min nafsik waritha. min sirithni w min
+              eashayrat yaequba. waijealh yurdi rabiy [lk]."
             </Text>
             <Text
               style={{
@@ -321,16 +324,20 @@ const HomeScreen = ({navigation}) => {
               }}
               bulletsContainerStyle={{
                 // marginRight: 70,
-                left: '7%',
+                left: '9%',
                 // top: '0%',
-                marginTop: '12%',
-                marginBottom: 15,
-                // borderWidth: 1,
-                // borderStyle: 'solid',
-                // borderColor: 'rgba(157, 157, 157, 0.6)',
-                // backgroundColor: 'rgba(157, 157, 157, 0.6)',
-                width: '5%',
-                height: '3%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                borderWidth: 1,
+                marginTop: '8%',
+                marginBottom: 26,
+                borderWidth: 1,
+                borderStyle: 'solid',
+                borderColor: 'rgba(157, 157, 157, 0.4)',
+                backgroundColor: 'rgba(157, 157, 157, 0.4)',
+                width: '4%',
+                height: '0%',
                 marginLeft: '30%',
                 borderRadius: 20,
               }}>
@@ -515,7 +522,7 @@ const HomeScreen = ({navigation}) => {
                 chosenBulletStyle={{
                   backgroundColor: '#fff',
                   color: 'white',
-                  fontSize: 20,
+                  fontSize: 40,
                   width: 14,
                   height: 14,
                 }}
@@ -527,18 +534,21 @@ const HomeScreen = ({navigation}) => {
                   backgroundColor: '#b3afaf',
                   borderWidth: 0,
                   color: 'white',
-                  height: 14,
+                  height: 12,
 
-                  width: 14,
+                  width: 12,
                 }}
                 bulletsContainerStyle={{
                   marginRight: 160,
                   marginBottom: 95,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
                   borderWidth: 1,
                   borderStyle: 'solid',
                   borderColor: 'rgba(157, 157, 157, 0.2)',
                   backgroundColor: 'rgba(157, 157, 157, 0.2)',
-                  width: '25%',
+                  width: '20%',
                   height: '10%',
                   marginLeft: '4%',
                   borderRadius: 20,

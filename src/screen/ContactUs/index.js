@@ -20,8 +20,13 @@ import CustomInput from '../../component/InputFileds';
 import ImagePicker from 'react-native-image-crop-picker';
 import CustomButton from '../../component/CustomButton';
 import Feather from 'react-native-vector-icons/Feather';
+import {CheckBox} from 'react-native-elements';
+import Textarea from '../../component/Textarea';
 
 const ContactUsScreen = () => {
+  const [maleChecked, setMaleChecked] = useState(false);
+  const [femaleChecked, setFemaleChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [image, setImage] = useState();
   const ChoosePhoto = () => {
@@ -57,7 +62,7 @@ const ContactUsScreen = () => {
               color: '#fff',
               fontSize: 25,
               fontWeight: '550',
-              left: 85,
+              left: 75,
               lineHeight: 30,
             }}>
             Contact us
@@ -209,11 +214,122 @@ const ContactUsScreen = () => {
             reach us
           </Text>
           <View style={styles.inContainer1}>
-            <CustomInput plcholder="Full Name" leftIcon="user" />
-            <CustomInput plcholder="Email id" leftIcon="mail" />
-            <CustomInput plcholder="Subject" leftIcon="copy" />
+            <Text
+              style={{
+                color: '#a7c829',
+                fontSize: 18,
+                fontWeight: '600',
+                lineHeight: 20,
+                marginTop: 20,
+                marginLeft: 10,
+              }}>
+              Personal Information
+            </Text>
+            <CustomInput
+              plcholder="First Name"
+              leftIcon="user"
+              style={{paddingVertical: 10}}
+            />
+            <CustomInput
+              plcholder="Last Name"
+              leftIcon="user"
+              style={{paddingVertical: 10}}
+            />
+            <Text
+              style={{
+                color: 'rgba(157, 157, 157, 1)',
+                fontSize: 16,
+                fontWeight: '600',
+                lineHeight: 20,
+                marginTop: 10,
+                marginLeft: 10,
+              }}>
+              Gender*
+            </Text>
+            <View style={styles.rowData}>
+              <CheckBox
+                title="Male"
+                textStyle={{color: '#FFFFFF', fontWeight: '300', fontSize: 15}}
+                checked={maleChecked}
+                checkedColor={CONSTANT.App.colors.Icon_Color}
+                uncheckedColor={CONSTANT.App.colors.Icon_Color}
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                onPress={e => {
+                  setMaleChecked(!maleChecked);
+                  // setFemaleChecked(!femaleChecked);
+                }}
+                containerStyle={{
+                  backgroundColor: 'rgba(255, 255, 255, 0)',
+                  borderWidth: 0,
+                }}
+              />
+              <CheckBox
+                title="Female"
+                textStyle={{color: '#FFFFFF', fontWeight: '300', fontSize: 15}}
+                checked={femaleChecked}
+                checkedColor={CONSTANT.App.colors.Icon_Color}
+                uncheckedColor={CONSTANT.App.colors.Icon_Color}
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                onPress={e => {
+                  setFemaleChecked(!femaleChecked);
+                  // setMaleChecked(!maleChecked);
+                }}
+                containerStyle={{
+                  backgroundColor: 'rgba(255, 255, 255, 0)',
+                  borderWidth: 0,
+                }}
+              />
+            </View>
+
+            <Text
+              style={{
+                color: '#a7c829',
+                fontSize: 18,
+                fontWeight: '600',
+                lineHeight: 20,
+                marginTop: 20,
+                marginLeft: 10,
+              }}>
+              Contact Information
+            </Text>
+            <CustomInput
+              plcholder="Email*"
+              leftIcon="mail"
+              style={{paddingVertical: 10}}
+            />
+            <CustomInput
+              plcholder="Mobile*"
+              leftIcon="phone"
+              style={{paddingVertical: 10}}
+            />
+            <Text
+              style={{
+                color: '#a7c829',
+                fontSize: 18,
+                fontWeight: '600',
+                lineHeight: 20,
+                marginTop: 20,
+                marginLeft: 10,
+              }}>
+              Additional Information
+            </Text>
+
+            <Text
+              style={{
+                color: 'rgba(157, 157, 157, 1)',
+                fontSize: 16,
+                fontWeight: '400',
+                lineHeight: 20,
+                marginTop: 20,
+                marginLeft: 10,
+              }}>
+              Reason for Contact*
+            </Text>
+
             {/* <CustomInput plcholder="Comments" /> */}
-            {/* <Textarea plcholder="Comments" /> */}
+            <Textarea plcholder="write here" />
 
             <View style={styles.boxC}>
               <View style={styles.boxwrap}>
@@ -254,6 +370,26 @@ const ContactUsScreen = () => {
               }}>
               PNG,JPG & DOC file only
             </Text>
+            <CheckBox
+              title="Signup for Newsletter"
+              textStyle={{
+                color: 'rgba(157, 157, 157, 1)',
+                fontWeight: '300',
+                fontSize: 15,
+                left: -10,
+                top: -2,
+              }}
+              checked={checked}
+              checkedColor={{backgroundColor: 'rgba(157, 157, 157, 1)'}}
+              uncheckedColor={{backgroundColor: 'rgba(157, 157, 157, 1)'}}
+              // uncheckedColor={CONSTANT.App.colors.Icon_Color}
+              onPress={e => setChecked(!checked)}
+              containerStyle={{
+                backgroundColor: 'transparent',
+                borderWidth: 0,
+                left: -13,
+              }}
+            />
             <CustomButton
               title={'Submit'}
               variant={'filled'}
@@ -281,7 +417,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
 
     overflow: 'hidden',
   },
@@ -295,9 +431,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     top: 90,
     overflow: 'hidden',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 10,
     paddingTop: 20,
+  },
+
+  rowData: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // marginTop: 14,
   },
   topContain: {
     flexDirection: 'row',

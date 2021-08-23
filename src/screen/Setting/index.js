@@ -54,7 +54,7 @@ const SettingScreen = ({navigation}) => {
       Icon_Name: 'mic',
       bgColor: '#DFBB2B',
       type: 'feather',
-      Screen: CONSTANT.App.screenNames.servicesDetail,
+      Screen: CONSTANT.App.screenNames.AskImamScreen,
     },
     {
       id: 3,
@@ -256,11 +256,17 @@ const SettingScreen = ({navigation}) => {
               <Text style={styles.heading}>Others</Text>
             </View>
             <View style={styles.row1}>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.AskImamScreen)
+                }>
                 <Text style={styles.heading1}>Ask Imam</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(CONSTANT.App.screenNames.AskImamScreen)
+                }>
                 <Entypo
                   name="chevron-right"
                   size={25}

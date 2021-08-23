@@ -18,7 +18,7 @@ export default class QiblaScreen extends Component {
       magnetometer: '0',
     };
     LPF.init([]);
-    LPF.smoothing = 0.3;
+    LPF.smoothing = 0.2;
   }
 
   componentDidMount() {
@@ -53,8 +53,8 @@ export default class QiblaScreen extends Component {
   _angle = magnetometer => {
     let angle = 0;
     if (magnetometer) {
-      let {x, y, z} = magnetometer;
-      if (Math.atan2(y, x, z) >= 0) {
+      let {x, y} = magnetometer;
+      if (Math.atan2(y, x) >= 0) {
         angle = Math.atan2(y, x) * (180 / Math.PI);
       } else {
         angle = (Math.atan2(y, x) + 2 * Math.PI) * (180 / Math.PI);
@@ -136,19 +136,19 @@ export default class QiblaScreen extends Component {
           <Col
             style={{
               alignItems: 'center',
-              transform: [{rotate: 60 - this.state.magnetometer + 'deg'}],
+              // transform: [{rotate: 80 - this.state.magnetometer + 'deg'}],
             }}>
-            <Image
+            {/* <Image
               source={require('../../assets/images/qibla.png')}
               style={{
                 height: height / 22,
                 resizeMode: 'contain',
-                top: 119,
+                top: 145,
                 left: -90,
                 zIndex: 1,
                 transform: [{rotate: '-68deg'}],
               }}
-            />
+            /> */}
             <Image
               source={require('../../assets/images/kibla.png')}
               style={{
@@ -157,6 +157,8 @@ export default class QiblaScreen extends Component {
                 alignItems: 'center',
                 resizeMode: 'contain',
                 // transform: [{rotate: 70 - this.state.magnetometer + 'deg'}],
+                transform: [{rotate: 80 - this.state.magnetometer + 'deg'}],
+
                 // transform: [{rotate: 250 + 'deg'}],
               }}
             />

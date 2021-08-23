@@ -120,6 +120,22 @@ const MoreScreen = ({navigation}) => {
       type: 'feather',
       screenName: CONSTANT.App.tabMenu.prayerTab,
     },
+    {
+      id: 11,
+      name: 'Contact Form',
+      Icon_Name: 'user',
+      bgColor: 'gray',
+      type: 'feather',
+      screenName: CONSTANT.App.screenNames.ContactForm,
+    },
+    {
+      id: 11,
+      name: 'Get Lead',
+      Icon_Name: 'list',
+      bgColor: '#A7c865',
+      type: 'feather',
+      screenName: CONSTANT.App.screenNames.ContactForm,
+    },
   ];
 
   return (
@@ -288,10 +304,10 @@ const MoreScreen = ({navigation}) => {
           height: 110,
           marginTop: 20,
           marginLeft: 25,
-          // display: 'flex',
-          // flexDirection: 'row',
-          // justifyContent: 'space-around',
-          // flexWrap: 'wrap',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          flexWrap: 'wrap',
         }}>
         {Data4.map(item => {
           return (
