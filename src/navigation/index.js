@@ -54,7 +54,7 @@ const servStack = () => {
   return (
     <serviceStack.Navigator
       headerMode="none"
-      initialRouteName={CONSTANT.App.screenNames.MoreScreen}>
+      initialRouteName={CONSTANT.App.screenNames.QuranScreen}>
       <serviceStack.Screen
         name={CONSTANT.App.screenNames.MoreScreen}
         component={MoreScreen}
@@ -200,7 +200,8 @@ function AppStackNavigator() {
   return (
     <Stack.Navigator
       headerMode="none"
-      initialRouteName={CONSTANT.App.screenNames.home}>
+      // initialRouteName={CONSTANT.App.screenNames.home}
+      >
       <Stack.Screen name={CONSTANT.App.screenNames.home} component={MyTabs} />
       <Stack.Screen
         name={CONSTANT.App.screenNames.profile}
