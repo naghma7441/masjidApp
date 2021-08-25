@@ -7,10 +7,12 @@ import CircleCheckBox, {LABEL_POSITION} from 'react-native-circle-checkbox';
 
 import {BgImage} from '../../component/ImageContainer';
 import CONSTANT from '../../constants';
+import { VerseComp } from '../../component/Verse';
 
 const QuranScreen = ({navigation}) => {  
   const [isModalVisible, setModalVisible] = useState(false);
   const [listChapter,setListChapter]=useState([])
+  const [chapterId,setChapterId]=useState('')
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -30,6 +32,13 @@ const result=await responseJson.json()
     console.log(err)
   }
 }
+
+const verseHandler=(item)=>{
+  // console.log("hiii",item)
+  setChapterId(item.id)
+    navigation.navigate(CONSTANT.App.screenNames.QuranTransScreen,{item})
+  
+}
   return (
     <BgImage>
       <ScrollView >
@@ -42,7 +51,8 @@ const result=await responseJson.json()
     listChapter.map(item=>{
       // console.log(item.id)
       return(
-        <TouchableOpacity style={styles.textmode} key={item.id} onPress={()=>navigation.navigate(CONSTANT.App.screenNames.QuranTransScreen)}>
+        <TouchableOpacity style={styles.textmode} key={item.id} onPress={()=>verseHandler(item)}
+        >
         <View>
         <Text style={{fontSize:20,color:'#FFFFFF'}}>{item.name_complex}</Text>
 
@@ -58,6 +68,7 @@ const result=await responseJson.json()
   }
       </View>
 </ScrollView>
+<VerseComp />
 <Modal isVisible={isModalVisible}>
         <View style={{flex: 1,position:'absolute',top:30,width:'100%',height:400,backgroundColor:'#FFFFFF'}}>
 
@@ -88,6 +99,10 @@ const styles = StyleSheet.create({
   textmode:{
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    paddingVertical: 10,
+    backgroundColor:'rgba(98,98,98,0.3)' ,
+    
+    marginVertical:10,borderRadius:10,paddingHorizontal:10
   }
 });
