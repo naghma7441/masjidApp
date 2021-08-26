@@ -2,7 +2,7 @@
 // https://aboutreact.com/react-native-play-music-sound/
 
 // import React in our code
-import React, {useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import all the components we are going to use
 import {
@@ -13,25 +13,29 @@ import {
   View,
   ScrollView,
   FlatList,
+  ActivityIndicatorBase,
+  ActivityIndicator,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-// import Sound Component
 import Sound from 'react-native-sound';
+import * as Progress from 'react-native-progress';
+
 import { BgImage } from '../../component/ImageContainer';
 
-const QuranTransScreen  = ({ route, navigation }) => {
+const QuranTransScreen = ({ route, navigation }) => {
   let sound1, sound2, sound3, sound4, sound5, sound6;
   const { item } = route.params
   // console.log('chapterItem', item)
 
   const [Item, setItem] = useState(item)
   const [data, setData] = useState([])
-  const [toggleBtn,setToggleBtn]=useState(true)
-  const [currentIndex,setCurrentIndex]=useState(false)
-
+  const [toggleBtn, setToggleBtn] = useState(true)
+  const [currentIndex, setCurrentIndex] = useState(false)
+const [isLoading,setIsLoading]=useState(false)
+const [pageCurrent,setPageCurrent]=useState(1)
 
   useEffect(() => {
-    
+
     getByChapter()
     Sound.setCategory('Playback', true); // true = mixWithOthers
     return () => {
@@ -42,17 +46,17 @@ const QuranTransScreen  = ({ route, navigation }) => {
       if (sound5) sound5.release();
       if (sound6) sound6.release();
     };
-  }, []);
+  }, [pageCurrent]);
 
 
   const getByChapter = async () => {
     try {
-      const result = await fetch(`http://api.quran.com/api/v3/chapters/${Item.id}/verses?recitation=1&translations=21&language=en&text_type=words`)
+      const result = await fetch(`http://api.quran.com/api/v3/chapters/${Item.id}/verses?recitation=1&translations=21&language=en&page=${pageCurrent}&text_type=words`)
       const resJson = await result.json()
       // console.log("result", resJson)
-      setData(resJson.verses)
+      setData(data.concat(resJson.verses))
 
-
+setIsLoading(false)
 
     } catch (err) {
       console.log(err)
@@ -66,56 +70,24 @@ const QuranTransScreen  = ({ route, navigation }) => {
   const playSound = (item, index) => {
     // console.log(item)
 
-          sound1 = new Sound(`https://audio.qurancdn.com/${item}`,'', (error, _sound) => {
-        if (error) {
-          alert('error' + error.message);
-          return;
-        }
-        sound1.play(() => {
-          sound1.release();
-          alert('succes')
-          setCurrentIndex(true)
-        });
-        setToggleBtn(false)
-
+    sound1 = new Sound(`https://audio.qurancdn.com/${item}`, '', (error, _sound) => {
+      if (error) {
+        alert('error' + error.message);
+        return;
+      }
+      sound1.play(() => {
+        sound1.release();
+        alert('succes')
+        setCurrentIndex(true)
       });
+      setToggleBtn(false)
 
-    // if (item.id == 1) {
-    //   sound1 = new Sound(item.url,'', (error, _sound) => {
-    //     if (error) {
-    //       alert('error' + error.message);
-    //       return;
-    //     }
-    //     sound1.play(() => {
-    //       sound1.release();
-    //       alert('succes')
-    //     });
-    //   });
-    // } else if (item.id == 2) {
-    //   sound2 = new Sound(item.url, '', (error, _sound) => {
-    //     if (error) {
-    //       alert('error' + error.message);
-    //       return;
-    //     }
-    //     sound2.play(() => {
-    //       sound2.release();
-    //     });
-    //   });
-    // } else if (item.id == 3) {
-    //   sound3 = new Sound(item.url, (error, _sound) => {
-    //     if (error) {
-    //       alert('error' + error.message);
-    //       return;
-    //     }
-    //     sound3.play(() => {
-    //       sound3.release();
-    //     });
-    //   });
-    // } 
+    });
+
   };
 
   const stopSound = (_item, index) => {
-    console.log("toggle")
+    // console.log("toggle")
     if (sound1) {
       sound1.stop(() => {
         console.log('Stop');
@@ -128,79 +100,101 @@ const QuranTransScreen  = ({ route, navigation }) => {
     return (
       // <ScrollView >
 
-<View key={item.id}  style={{ 
-       paddingVertical: 10,backgroundColor:'rgba(98,98,98,0.3)' ,marginVertical:10,borderRadius:10,paddingHorizontal:10}}>
-      <View  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-       paddingVertical: 10,marginVertical:10}}>
-      <TouchableOpacity onPress={() =>playSound(item.audio.url)}
-        style={{
-          width: 30, height: 30, borderRadius: 150, backgroundColor: '#00acc2',
-          alignItems: 'center', justifyContent: 'center'
+      <View key={item.id} style={{
+        paddingVertical: 10, backgroundColor: 'rgba(98,98,98,0.3)', marginVertical: 10, borderRadius: 10, paddingHorizontal: 10
+      }}>
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+          paddingVertical: 10, marginVertical: 10
         }}>
+          <TouchableOpacity onPress={() => playSound(item.audio.url)}
+            style={{
+              width: 30, height: 30, borderRadius: 150, backgroundColor: '#00acc2',
+              alignItems: 'center', justifyContent: 'center'
+            }}>
             <AntDesign name="caretright" color={'#FFFFFF'} />
 
-{/* {
+            {/* {
   toggleBtn == true && item.id ?
   <AntDesign name="caretright" color={'#FFFFFF'} key={item.id}/>:
   <AntDesign name="pausecircle" color={'#FFFFFF'} key={item.id}/>
 
 } */}
-        {/* nme="pausecircle" */}
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() =>stopSound(item.audio.url)}
-        style={{
-          width: 30, height: 30, borderRadius: 150, backgroundColor: '#00acc2',
-          alignItems: 'center', justifyContent: 'center'
-        }}>
+            {/* nme="pausecircle" */}
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => stopSound(item.audio.url)}
+            style={{
+              width: 30, height: 30, borderRadius: 150, backgroundColor: '#00acc2',
+              alignItems: 'center', justifyContent: 'center'
+            }}>
             <AntDesign name="pausecircle" color={'#FFFFFF'} />
 
-      </TouchableOpacity>
+          </TouchableOpacity>
 
-      <Text style={{ fontSize: 17, color: '#FFFFFF' }}>{item.text_indopak}</Text>
-    </View>
-    <View>
-    <Text style={{color:'#FFFFFF',fontSize:17}}>
-    {
-      item.words.map(word=>{
-        // console.log(word.verse_key)
-        return word.translation.text
+          <Text style={{ fontSize: 17, color: '#FFFFFF' }}>{item.text_indopak}</Text>
+        </View>
+        <View>
+          <Text style={{ color: '#FFFFFF', fontSize: 17 }}>
+            {
+              item.words.map(word => {
+                // console.log(word.verse_key)
+                return word.translation.text
 
-          
-          
-        
-      })
-    }
-    </Text>
-    {/* {currentIndex ? <Text>this is hide </Text> : ''} */}
-    </View>
-        <Text>this is hide </Text>
-        {console.log(currentIndex)}
 
-</View>
-// </ScrollView>
+
+
+              })
+            }
+          </Text>
+          {/* {currentIndex ? <Text>this is hide </Text> : ''} */}
+        </View>
+
+      </View>
+      // </ScrollView>
       //
     );
   };
 
 
-  const footerComp=()=>{
-    return(
-      // <View style={{position:'absolute',bottom:0,left:0,right:0,backgroundColor:'red'}}>
-        <Text style={{fontSize:40,color:'#FFFFFF'}}>Footer</Text>
-      // </View>
+  const renderFooter = () => {
+    return (
+      <View>
+        {
+isLoading ?
+<View>
+  <ActivityIndicator     style={{marginBottom:10}}     
+  
+  color = '#bc2b78'
+         size = "large"
+/>
+</View> :null
+
+        }
+        <View>
+        <Progress.Bar progress={0.3} width={200} />
+       
+        </View>
+      </View>
+     
     )
+  }
+
+  const handleLoadMore=()=>{
+    setPageCurrent(pageCurrent+1)
+    setIsLoading(true)
   }
   return (
     <BgImage>
 
-          <FlatList 
-          data={data}
-          renderItem={({item})=>ItemView(item)}
-          keyExtractor={(item, index) => item.key}
+      <FlatList
+        data={data}
+        renderItem={({ item }) => ItemView(item)}
+        keyExtractor={(item, index) => item.key}
+        ListFooterComponent={renderFooter}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0}
 
-          ListFooterComponent={()=>footerComp()}
-          ListFooterComponentStyle={{position: 'absolute', bottom:0,left: 0, right: 0}}
-          />
+      />
 
     </BgImage>
   );
@@ -251,6 +245,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     borderTopWidth: 1,
-    borderTopColor: 'rgb(180,180,180)',                                  
+    borderTopColor: 'rgb(180,180,180)',
   },
 });
