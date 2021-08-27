@@ -166,9 +166,12 @@ const CONSTANT = {
       QiblaScreen: 'qiblaScreen',
       QuranScreen: 'quranScreen',
       QuranTransScreen: 'quranTransScreen',
-      HadeesScreen: 'hadeesScreen',
+      HadithsScreen: 'hadithsScreen',
       AskImamScreen: 'askImamScreen',
       ContactForm: 'contactForm',
+      ContactListScreen: 'contactListScreen',
+      HadeethsInfoScreen: 'hadeethsInfoScreen',
+      BookDetailsScreen: 'bookDetailsScreen',
     },
   },
   Api: {

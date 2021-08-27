@@ -6,33 +6,46 @@ import {BgImage} from '../../component/ImageContainer';
 import ReadMoreComp from '../Annoucement/ReadMore';
 
 const QuranTransScreen = () => {
-  const [data, setData] = useState();
-  const getMoviesFromApi = async () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getByChapter();
+  }, []);
+
+  const getByChapter = async () => {
     try {
-      let response = await fetch('https://hadeethenc.com/api/v1/languages');
-      let responseJson = await response.json();
-      console.log('response', responseJson);
-      // return responseJson;
-      setData(responseJson);
-    } catch (error) {
-      console.error(error);
+      const result = await fetch(
+        'https://api.quran.com/api/v4/verses/by_chapter/1?language=ar&words=true&page=1&per_page=10',
+      );
+      const resJson = await result.json();
+      console.log('result', resJson.verses);
+      resJson.verses.map(item => {
+        // console.log("item",item)
+        setData(item.words);
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
-
   return (
     <BgImage>
-      <Text style={{color: 'white'}}>Quran Translation Screenss</Text>
-      <CustomButton
-        title={'Submit'}
-        variant={'filled'}
-        onPress={getMoviesFromApi}
-      />
-      {data?.map(item => {
-        // console.log(item);
-        // <List>{item.code}</List>;
-        return <Text style={{color: 'white'}}>{item.code}</Text>;
-      })}
-      <ReadMoreComp />
+      <Text style={{color: 'white'}}>Quran Translation Screen</Text>
+      {console.log('data', data)}
+
+      {data.length > 0 &&
+        data.map(word => {
+          console.log('word', word.transliteration.text);
+
+          return (
+            <View>
+              <Text style={{fontSize: 12, color: '#FFFFFF'}}>
+                {word.translation.text}
+              </Text>
+              <Text style={{fontSize: 12, color: '#FFFFFF'}}>
+                {word.transliteration.text}
+              </Text>
+            </View>
+          );
+        })}
     </BgImage>
   );
 };

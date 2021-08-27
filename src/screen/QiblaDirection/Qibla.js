@@ -122,7 +122,7 @@ export default class QiblaScreen extends Component {
         </Row> */}
 
         <Row style={{alignItems: 'center'}} size={2}>
-          <Text
+          {/* <Text
             style={{
               color: '#fff',
               fontSize: height / 27,
@@ -131,7 +131,7 @@ export default class QiblaScreen extends Component {
               textAlign: 'center',
             }}>
             {this._degree(this.state.magnetometer)}°
-          </Text>
+          </Text> */}
 
           <Col
             style={{

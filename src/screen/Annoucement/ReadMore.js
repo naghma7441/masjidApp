@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const ReadMoreComp = ({testFunc, open}) => {
+const ReadMoreComp = props => {
   const [textShown, setTextShown] = useState(false); //To show ur remaining Text
   const [lengthMore, setLengthMore] = useState(false); //to show the "Read more & Less Line"
   const toggleNumberOfLines = () => {
@@ -18,7 +18,7 @@ const ReadMoreComp = ({testFunc, open}) => {
     <View style={styles.mainContainer}>
       <Text
         onTextLayout={onTextLayout}
-        numberOfLines={open === '123' ? undefined : 2}
+        numberOfLines={textShown ? undefined : 2}
         style={{lineHeight: 21, color: '#fff'}}>
         Qurbani, udhiyah in Arabic, means sacrifice. Every Eid ul-Adha, Muslims
         sacrifice a goat, sheep, cow or camel – or pay to have one slaughtered
@@ -31,9 +31,9 @@ const ReadMoreComp = ({testFunc, open}) => {
 
       {lengthMore ? (
         <Text
-          onPress={() => testFunc('12')}
-          style={{lineHeight: 21, marginTop: 5, color: '#a7c829'}}>
-          {open === '123' ? 'Show less' : 'Read more'}
+          onPress={toggleNumberOfLines}
+          style={{lineHeight: 21, marginTop: 10, color: '#a7c829'}}>
+          {textShown ? 'Show less' : 'Read more'}
         </Text>
       ) : null}
     </View>

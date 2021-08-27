@@ -38,9 +38,12 @@ import {
   QiblaScreen,
   QuranScreen,
   QuranTransScreen,
-  HadeesScreen,
+  HadithsScreen,
   AskImamScreen,
   ContactForm,
+  ContactListScreen,
+  HadeethsInfoScreen,
+  BookDetailsScreen,
 } from '../screen';
 
 import CustomTabBar from '../component/CustomTabBar';
@@ -95,8 +98,8 @@ const servStack = () => {
         component={QuranTransScreen}
       />
       <serviceStack.Screen
-        name={CONSTANT.App.screenNames.HadeesScreen}
-        component={HadeesScreen}
+        name={CONSTANT.App.screenNames.HadithsScreen}
+        component={HadithsScreen}
       />
       <serviceStack.Screen
         name={CONSTANT.App.screenNames.AskImamScreen}
@@ -105,6 +108,18 @@ const servStack = () => {
       <serviceStack.Screen
         name={CONSTANT.App.screenNames.ContactForm}
         component={ContactForm}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.ContactListScreen}
+        component={ContactListScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.HadeethsInfoScreen}
+        component={HadeethsInfoScreen}
+      />
+      <serviceStack.Screen
+        name={CONSTANT.App.screenNames.BookDetailsScreen}
+        component={BookDetailsScreen}
       />
     </serviceStack.Navigator>
   );
@@ -195,7 +210,7 @@ function AppStackNavigator() {
   return (
     <Stack.Navigator
       headerMode="none"
-      initialRouteName={CONSTANT.App.screenNames.splash}>
+      initialRouteName={CONSTANT.App.screenNames.home}>
       <Stack.Screen name={CONSTANT.App.screenNames.home} component={MyTabs} />
       <Stack.Screen
         name={CONSTANT.App.screenNames.profile}

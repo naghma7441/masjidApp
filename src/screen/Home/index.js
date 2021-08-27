@@ -10,6 +10,7 @@ import {
   FlatList,
   KeyboardAvoidingView,
 } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 
 import CustomHeader from '../../component/CustomHeader';
 import CONSTANT from '../../constants';
@@ -23,7 +24,6 @@ import {useDispatch} from 'react-redux';
 
 import {BackgroundImage} from 'react-native-elements/dist/config';
 import Carousel from 'react-native-looped-carousel';
-import Feather from 'react-native-vector-icons/dist/Feather';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import Share from 'react-native-share';
@@ -35,6 +35,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {useIsFocused} from '@react-navigation/native';
+import {PrayerTimeComp} from '../../component/PrayerTime';
 
 // import {Button, Overlay} from 'react-native-elements';
 
@@ -107,7 +108,12 @@ const BannerImg = [
 ];
 
 const HomeScreen = ({navigation}) => {
+  var str = 'Amount is 1000';
+  const name = str.replace(/[\W_]+/g, ' ');
+
+  console.log('result>>>>>>>>', name);
   const {width, height} = Dimensions.get('window');
+  const [prayerTime, setPrayerTime] = useState([]);
   const [layoutStyle1, setLayoutStyle1] = React.useState({
     width: '100%',
     height: 320,
@@ -115,12 +121,38 @@ const HomeScreen = ({navigation}) => {
   const [visible, setVisible] = useState(false);
   const [play, setPlay] = useState(false);
   const isFocused = useIsFocused();
+  const [currentLongitude, setCurrentLongitude] = useState('...');
+  const [currentLatitude, setCurrentLatitude] = useState('...');
+  const [currentMonth, setCurrentMonth] = useState(8);
+
+  const [locationStatus, setLocationStatus] = useState('');
 
   useEffect(() => {
+    let latitude, longitude;
+
+    Geolocation.getCurrentPosition(
+      info => {
+        console.log('info', info);
+        const {coords} = info;
+
+        latitude = coords.latitude;
+        longitude = coords.longitude;
+
+        setCurrentLatitude(latitude);
+        setCurrentLongitude(longitude);
+      },
+      error => console.log(error),
+      {
+        enableHighAccuracy: false,
+        // timeout: 2000,
+        maximumAge: 3600000,
+      },
+    );
     if (!isFocused) {
       Tts.stop();
     }
-  }, [isFocused]);
+  }, [isFocused, Geolocation, currentMonth]);
+
   const toggleOverlay = () => {
     setVisible(!visible);
   };
@@ -144,16 +176,14 @@ const HomeScreen = ({navigation}) => {
   const [active, setActive] = useState(0);
   const onPlay = () => {
     setPlay(true);
-    Tts.speak(
-      "wabialfiel , 'akhshaa alkhulafa' min baedi , waqad kanat zawjati kadhalik eaqir , 'aetini min nafsik waritha. min sirithni w min eashayrat yaequba. waijealh yurdi rabiy [lk].",
-      {
-        androidParams: {
-          KEY_PARAM_PAN: -1,
-          KEY_PARAM_VOLUME: 0.6,
-          KEY_PARAM_STREAM: 'STREAM_MUSIC',
-        },
+    Tts.setDefaultLanguage('ar');
+    Tts.speak('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', {
+      androidParams: {
+        KEY_PARAM_PAN: -1,
+        KEY_PARAM_VOLUME: 1,
+        KEY_PARAM_STREAM: 'STREAM_MUSIC',
       },
-    );
+    });
   };
   const onStop = () => {
     setPlay(false);
@@ -341,6 +371,7 @@ const HomeScreen = ({navigation}) => {
                 marginLeft: '30%',
                 borderRadius: 20,
               }}>
+              {/* {alert(currentLongitude)} */}
               <View
                 style={[
                   layoutStyle,
@@ -602,99 +633,31 @@ const HomeScreen = ({navigation}) => {
               </Carousel>
             </View>
           </View>
+          {/* <!------------------cmponent---------> */}
 
           <View style={[styles.showAll, {paddingHorizontal: 10}]}>
             <Text style={styles.text}>Today's - Salah Time</Text>
-
-            <Text style={{color: '#A7C829', fontSize: 18}}>See all</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(CONSTANT.App.tabMenu.prayerTab, {
+                  currentLatitude,
+                  currentLongitude,
+                  currentMonth,
+                  setCurrentMonth,
+                })
+              }>
+              <Text style={{color: '#A7C829', fontSize: 18}}>See all</Text>
+            </TouchableOpacity>
           </View>
-          <View style={{marginTop: 10}}>
-            {/* <Text
-              style={{
-                color: '#9D9D9D',
-                alignItems: 'stretch',
-                // letterSpacing: 1,
-                fontSize: 14,
-                paddingLeft: 10,
-                lineHeight: 17,
-                fontWeight: '500',
-              }}>
-              India Standard Time (IST) is 5:30 hours
-            </Text> */}
-          </View>
-          <View style={styles.calender}>
-            <View style={styles.rowData}>
-              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Namaz</Text>
-              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Athaan Time</Text>
-              <Text style={{fontSize: 15, color: '#9D9D9D'}}>Iqamah Time</Text>
-            </View>
-            <View style={styles.horizoLine}></View>
 
-            <View style={styles.rowData}>
-              <Text style={styles.calanderText}>Fajr</Text>
+          <PrayerTimeComp
+            currentLatitude={currentLatitude}
+            currentLongitude={currentLongitude}
+            currentMonth={currentMonth}
+          />
 
-              <Text style={styles.calanderText}>06:00 AM</Text>
-              <Text style={styles.calanderText}>06:00 AM</Text>
-            </View>
-            <View style={styles.rowData}>
-              <Text style={{color: 'white', fontSize: 15, marginRight: 20}}>
-                Sunrise
-                <Feather
-                  name="sun"
-                  style={{
-                    position: 'absolute',
-                    color: '#9D9D9D',
-                    width: 15.58,
-                    height: 15.58,
-                    left: 23,
-                  }}
-                />
-              </Text>
-              <Text style={styles.calanderText}></Text>
-              <Text style={styles.calanderText}>06:10 AM</Text>
-            </View>
-            <View style={styles.rowData}>
-              <Text style={{fontSize: 16, color: '#A7C829'}}>Dhuhr</Text>
-              <Text style={{fontSize: 16, color: '#A7C829', paddingRight: 11}}>
-                12:45 AM
-              </Text>
-              <Text style={{fontSize: 17, color: '#A7C829', paddingLeft: 8}}>
-                06:00 AM
-              </Text>
-            </View>
-            <View style={styles.rowData}>
-              <Text style={styles.calanderText}>Asr</Text>
-              <Text style={styles.calanderText}>04:04 AM</Text>
-              <Text style={styles.calanderText}>06:00 AM</Text>
-            </View>
-            <View style={styles.rowData}>
-              <Text style={styles.calanderText}>Maghrib</Text>
-              <Text style={{color: 'white', paddingRight: 38, fontSize: 16}}>
-                07:29 AM
-              </Text>
-              <Text style={styles.calanderText}>06:00 AM</Text>
-            </View>
-            <View style={styles.rowData}>
-              <Text style={styles.calanderText}>Isha</Text>
-              <Text style={{color: 'white', fontSize: 16, paddingRight: 10}}>
-                08:55 PM
-              </Text>
-              <Text style={styles.calanderText}>06:00 AM</Text>
-            </View>
-            <View style={styles.horizoLine}></View>
-            <View style={[styles.rowData, {marginBottom: 15}]}>
-              <Text style={styles.calanderText}>Qiyam</Text>
-              <Text style={styles.calanderText}></Text>
-              <Text style={styles.calanderText}>01:32 AM</Text>
-            </View>
-            <View style={[styles.rowData, {marginBottom: 15}]}>
-              <Text style={styles.calanderText}>Tahajjud</Text>
-              <Text style={{color: 'white', fontSize: 16, paddingRight: 34}}>
-                04:32 AM
-              </Text>
-              <Text style={styles.calanderText}>04:32 AM</Text>
-            </View>
-          </View>
+          {/* <!------------------cmponent---------> */}
+
           <View style={{marginTop: 10, marginLeft: 10}}>
             <Text
               style={{

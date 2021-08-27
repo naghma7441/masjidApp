@@ -35,10 +35,10 @@ import ToggleSwitch from 'toggle-switch-react-native';
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5';
 
 const SettingScreen = ({navigation}) => {
-  const [toggle1, setToggle1] = useState(false);
-  const [toggle2, setToggle2] = useState(false);
-  const [toggle3, setToggle3] = useState(false);
-  const [toggle4, setToggle4] = useState(false);
+  const [toggle1, setToggle1] = useState(true);
+  const [toggle2, setToggle2] = useState(true);
+  const [toggle3, setToggle3] = useState(true);
+  const [toggle4, setToggle4] = useState(true);
   const Data = [
     {
       id: 1,
@@ -99,8 +99,8 @@ const SettingScreen = ({navigation}) => {
   ];
 
   const toggle1Button = () => {
-    if (toggle1 == false) {
-      setToggle1(true);
+    if (toggle1 == true) {
+      setToggle1(false);
     } else if (toggle1 == true) {
       setToggle1(false);
     }
@@ -260,6 +260,7 @@ const SettingScreen = ({navigation}) => {
                 onPress={() =>
                   navigation.navigate(CONSTANT.App.screenNames.AskImamScreen)
                 }>
+                {' '}
                 <Text style={styles.heading1}>Ask Imam</Text>
               </TouchableOpacity>
 

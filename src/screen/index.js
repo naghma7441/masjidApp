@@ -22,9 +22,12 @@ import ContactUsScreen from './ContactUs';
 import QiblaScreen from './QiblaDirection';
 import QuranScreen from './Quran';
 import QuranTransScreen from './QuranTranslation';
-import HadeesScreen from './HadeesBooks';
+import HadithsScreen from './HadeesBooks';
 import AskImamScreen from './AskImam';
-import ContactForm from './ContactForm';
+import ContactForm from './ContactForm/index ';
+import ContactListScreen from './ContactList';
+import HadeethsInfoScreen from './HadeesBooks/HadeethsInfo';
+import BookDetailsScreen from './HadeesBooks/BookDetails';
 export {
   HomeScreen,
   LoginScreen,
@@ -50,7 +53,10 @@ export {
   QiblaScreen,
   QuranScreen,
   QuranTransScreen,
-  HadeesScreen,
+  HadithsScreen,
   AskImamScreen,
   ContactForm,
+  ContactListScreen,
+  HadeethsInfoScreen,
+  BookDetailsScreen,
 };

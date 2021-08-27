@@ -74,7 +74,7 @@ const MoreScreen = ({navigation}) => {
       Icon_Name: 'star',
       bgColor: '#DF6C2B',
       type: 'feather',
-      screenName: CONSTANT.App.screenNames.HadeesScreen,
+      screenName: CONSTANT.App.screenNames.HadithsScreen,
     },
     {
       id: 6,
@@ -129,242 +129,263 @@ const MoreScreen = ({navigation}) => {
       screenName: CONSTANT.App.screenNames.ContactForm,
     },
     {
-      id: 11,
-      name: 'Get Lead',
-      Icon_Name: 'list',
-      bgColor: '#A7c865',
+      id: 12,
+      name: 'Contact List',
+      Icon_Name: 'user',
+      bgColor: 'gray',
       type: 'feather',
-      screenName: CONSTANT.App.screenNames.ContactForm,
+      screenName: CONSTANT.App.screenNames.ContactListScreen,
     },
   ];
 
   return (
-    <BackgroundImage
-      source={CONSTANT.App.screenImages.bg_Image}
-      style={{flex: 1}}>
-      <Text style={styles.title}>More</Text>
-      <View>
-        <View
-          style={{
-            height: 110,
-            marginTop: 71,
-            marginLeft: -10,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            flexWrap: 'wrap',
-          }}>
-          {Data1.map(item => {
-            return (
-              <View>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate(item.screenName)}>
-                  <View
-                    style={{
-                      width: 65,
-                      height: 65,
-                      backgroundColor: item.bgColor,
-                      borderRadius: 20,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginLeft: 10,
-                      //   marginTop: '-10%',
-                    }}
-                    key={item.id}>
-                    <Icon
-                      name={item.Icon_Name}
-                      type={item.type}
-                      size={22}
-                      color="#FFFFFF"
-                      onPress={() => navigation.navigate(item.screenName)}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      width: 70,
-                      marginTop: 10,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginLeft: 10,
-                    }}>
-                    <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
-                      {item.name}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            );
-          })}
+    <BgImage>
+      <View style={styles.container}>
+        <View style={styles.topContain}>
+          <Text style={styles.title}>More</Text>
         </View>
+        <ScrollView
+          vertical={true}
+          // contentContainerStyle={{paddingBottom: 100,}}
+          showsVerticalScrollIndicator={false}
+          style={{top: 20}}>
+          <View
+            style={{
+              height: 110,
+              // marginTop: 71,
+              marginLeft: -10,
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              flexWrap: 'wrap',
+            }}>
+            {Data1.map(item => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(item.screenName)}>
+                    <View
+                      style={{
+                        width: 65,
+                        height: 65,
+                        backgroundColor: item.bgColor,
+                        borderRadius: 20,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                        //   marginTop: '-10%',
+                      }}
+                      key={item.id}>
+                      <Icon
+                        name={item.Icon_Name}
+                        type={item.type}
+                        size={22}
+                        color="#FFFFFF"
+                        onPress={() => navigation.navigate(item.screenName)}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        width: 70,
+                        marginTop: 10,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                      }}>
+                      <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
+                        {item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+          <View
+            style={{
+              height: 110,
+              marginTop: 31,
+              marginLeft: -10,
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              flexWrap: 'wrap',
+            }}>
+            {Data2.map(item => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(item.screenName)}>
+                    <View
+                      style={{
+                        width: 65,
+                        height: 65,
+                        backgroundColor: item.bgColor,
+                        borderRadius: 20,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                        //   marginTop: '-10%',
+                      }}
+                      key={item.id}>
+                      <Icon
+                        name={item.Icon_Name}
+                        type={item.type}
+                        size={22}
+                        color="#FFFFFF"
+                      />
+                    </View>
+                    <View
+                      style={{
+                        width: 70,
+                        marginTop: 5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                      }}>
+                      <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
+                        {item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+          <View
+            style={{
+              height: 110,
+              marginTop: 31,
+              marginLeft: -10,
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              flexWrap: 'wrap',
+            }}>
+            {Data3.map(item => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(item.screenName)}>
+                    <View
+                      style={{
+                        width: 65,
+                        height: 65,
+                        backgroundColor: item.bgColor,
+                        borderRadius: 20,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                        //   marginTop: '-10%',
+                      }}
+                      key={item.id}>
+                      <Icon
+                        name={item.Icon_Name}
+                        type={item.type}
+                        size={22}
+                        color="#FFFFFF"
+                      />
+                    </View>
+                    <View
+                      style={{
+                        width: 70,
+                        marginTop: 5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                      }}>
+                      <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
+                        {item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+          <View
+            style={{
+              height: 110,
+              marginTop: 20,
+              // marginLeft: 25,
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              flexWrap: 'wrap',
+            }}>
+            {Data4.map(item => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(item.screenName)}>
+                    <View
+                      style={{
+                        width: 65,
+                        height: 65,
+                        backgroundColor: item.bgColor,
+                        borderRadius: 20,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        // marginLeft: 10,
+                        // marginTop: '-10%',
+                      }}
+                      key={item.id}>
+                      <Icon
+                        name={item.Icon_Name}
+                        type={item.type}
+                        size={22}
+                        color="#FFFFFF"
+                      />
+                    </View>
+                    <View
+                      style={{
+                        width: 70,
+                        marginTop: 5,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginLeft: 10,
+                      }}>
+                      <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
+                        {item.name}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
+          </View>
+        </ScrollView>
       </View>
-      <View
-        style={{
-          height: 110,
-          marginTop: 31,
-          marginLeft: -10,
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          flexWrap: 'wrap',
-        }}>
-        {Data2.map(item => {
-          return (
-            <View>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(item.screenName)}>
-                <View
-                  style={{
-                    width: 65,
-                    height: 65,
-                    backgroundColor: item.bgColor,
-                    borderRadius: 20,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 10,
-                    //   marginTop: '-10%',
-                  }}
-                  key={item.id}>
-                  <Icon
-                    name={item.Icon_Name}
-                    type={item.type}
-                    size={22}
-                    color="#FFFFFF"
-                  />
-                </View>
-                <View
-                  style={{
-                    width: 70,
-                    marginTop: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 10,
-                  }}>
-                  <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
-                    {item.name}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
-      <View
-        style={{
-          height: 110,
-          marginTop: 31,
-          marginLeft: -10,
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          flexWrap: 'wrap',
-        }}>
-        {Data3.map(item => {
-          return (
-            <View>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(item.screenName)}>
-                <View
-                  style={{
-                    width: 65,
-                    height: 65,
-                    backgroundColor: item.bgColor,
-                    borderRadius: 20,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 10,
-                    //   marginTop: '-10%',
-                  }}
-                  key={item.id}>
-                  <Icon
-                    name={item.Icon_Name}
-                    type={item.type}
-                    size={22}
-                    color="#FFFFFF"
-                  />
-                </View>
-                <View
-                  style={{
-                    width: 70,
-                    marginTop: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 10,
-                  }}>
-                  <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
-                    {item.name}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
-      <View
-        style={{
-          height: 110,
-          marginTop: 20,
-          marginLeft: 25,
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          flexWrap: 'wrap',
-        }}>
-        {Data4.map(item => {
-          return (
-            <View>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(item.screenName)}>
-                <View
-                  style={{
-                    width: 65,
-                    height: 65,
-                    backgroundColor: item.bgColor,
-                    borderRadius: 20,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 10,
-                    // marginTop: '-10%',
-                  }}
-                  key={item.id}>
-                  <Icon
-                    name={item.Icon_Name}
-                    type={item.type}
-                    size={22}
-                    color="#FFFFFF"
-                  />
-                </View>
-                <View
-                  style={{
-                    width: 70,
-                    marginTop: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginLeft: 10,
-                  }}>
-                  <Text style={{color: '#FFFFFF', fontWeight: '400'}}>
-                    {item.name}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
-
-      {/* </View> */}
-    </BackgroundImage>
+    </BgImage>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    // paddingHorizontal: 10,
+    marginTop: 10,
+
+    // overflow: 'hidden',
+  },
+  topContain: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    // top: 10,
+    // height: 120,
+    marginTop: 10,
+    marginBottom: 20,
+    overflow: 'hidden',
+  },
   title: {
     color: '#fff',
     fontSize: 24,
     fontWeight: '500',
-    top: 43,
     left: 24,
-    right: 279,
-    bottom: 748,
+    // right: 279,
+    // bottom: 748,
   },
   banner: {
     width: '100%',

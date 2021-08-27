@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, StyleSheet, View, Text, Image} from 'react-native';
 import CONSTANT from '../../constants';
 import {Icon} from 'react-native-elements';
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
   },
 });
 export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
-  const [open, setOpen] = useState(null);
   const myCustomShare = async () => {
     const shareOption = {
       message:
@@ -128,10 +127,6 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
     } catch (error) {
       console.log('Error', error);
     }
-  };
-
-  const toggleNumberOfLines = id => {
-    console.log('12', id);
   };
 
   return (
@@ -225,7 +220,7 @@ export const NewAnnounce = ({showData, navigation, handleRefresh}) => {
                     it's process. Details will be posted soon.
                   </Text> */}
                   <View style={{marginTop: 20, paddingHorizontal: 10}}>
-                    <ReadMoreComp open={open} testFunc={toggleNumberOfLines} />
+                    <ReadMoreComp />
                   </View>
                 </View>
               </View>
